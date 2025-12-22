@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { Shield, AlertTriangle, Menu, X, Map, ShieldAlert, Clock10, Siren, MapPinHouse, LucideIcon } from 'lucide-react';
+import { Shield, AlertTriangle, Menu, X, Map, ShieldAlert, Clock10, Siren, MapPinHouse, LucideIcon, MessageCircleQuestion } from 'lucide-react';
 
 import RiskMapSection from '../sections/RiskMapSection';
 import ThreatInsightsSection from '../sections/ThreatInsightsSection';
@@ -9,6 +9,7 @@ import SafePlacesSection from '../sections/SafePlacesSection';
 import { getEnvConfig } from '../logic/env';
 import { getTimeBasedSafety } from '../logic/risk';
 import AddToHomeHelp from '@/components/AddToHomeHelp';
+import FeatureGuideSection from '@/sections/HowTo';
 const LOCATIONS = [
   {
     id: "bandra",
@@ -82,7 +83,7 @@ const LOCATIONS = [
   },
 ];
 
-type ActiveSection = 'map' | 'threats' | 'routes' | 'emergency' | 'places';
+type ActiveSection = 'map' | 'threats' | 'routes' | 'emergency' | 'places' | 'how-to';
 function setCookie(name: string, value: string, days = 1) {
   const expires = new Date(Date.now() + days * 864e5).toUTCString();
   document.cookie = `${name}=${encodeURIComponent(value)}; expires=${expires}; path=/`;
@@ -128,6 +129,7 @@ export default function Home() {
       // { id: 'threats', label: 'Insights', icon: ShieldAlert },
       { id: 'routes', label: 'Routes', icon: Clock10 },
       { id: 'places', label: 'Safe Places', icon: MapPinHouse },
+      { id: 'how-to', label: 'How To ?', icon: MessageCircleQuestion },
     ];
 
   return (
@@ -209,7 +211,7 @@ export default function Home() {
           {/* Mobile Nav */}
           {mobileMenuOpen && (
             <nav className="md:hidden py-4 border-t border-border animate-fade-in">
-              <div className="grid grid-cols-4 gap-2">
+              <div className="grid grid-cols-5 gap-2">
                 {navItems.map((item) => {
                   const Icon = item.icon;
                   return (
@@ -273,13 +275,17 @@ export default function Home() {
             {activeSection === 'places' && (
               <SafePlacesSection location={location} />
             )}
+            {activeSection === 'how-to' && (
+              // <SafePlacesSection location={location} />
+              <FeatureGuideSection/>
+            )}
           </div>
         </div>
       </main>
 
       {/* Mobile Bottom Nav */}
       <nav className="md:hidden fixed bottom-0 left-0 right-0 bg-background/80 backdrop-blur-xl border-t border-border z-50">
-        <div className="grid grid-cols-4">
+        <div className="grid grid-cols-5">
           {navItems.map((item) => {
             const Icon = item.icon
             return <button
