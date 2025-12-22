@@ -3,6 +3,7 @@
  * Pure deterministic functions - framework agnostic
  */
 
+// import { calculateDistance } from '@/sections/RiskMapSection';
 import type { Incident, RiskLevel, RiskZone } from '../types';
 
 const SEVERITY_WEIGHTS: Record<number, number> = {
@@ -106,10 +107,10 @@ export function calculateLocationRisk(
  * Convert numeric risk score to risk level
  */
 export function getRiskLevel(score: number): RiskLevel {
-  if (score >= 0.8) return 'critical';
-  if (score >= 0.6) return 'high';
-  if (score >= 0.4) return 'medium';
-  if (score >= 0.2) return 'low';
+  if (score >= 0.08) return 'critical';
+  if (score >= 0.06) return 'high';
+  if (score >= 0.04) return 'medium';
+  if (score >= 0.02) return 'low';
   return 'safe';
 }
 
@@ -144,11 +145,11 @@ export function generateRiskZones(incidents: Incident[]): RiskZone[] {
       processed.add(key);
       const score = calculateLocationRisk(gridLat + gridSize / 2, gridLng + gridSize / 2, incidents);
       
-      if (score > 0.1) {
+      if (score > 0.3) {
         zones.push({
           lat: gridLat + gridSize / 2,
           lng: gridLng + gridSize / 2,
-          radius: 300,
+          radius: 500,
           riskLevel: getRiskLevel(score),
           score,
         });
@@ -159,9 +160,6 @@ export function generateRiskZones(incidents: Incident[]): RiskZone[] {
   return zones;
 }
 
-/**
- * Sort incidents by distance from a point
- */
 export function sortByDistance(
   lat: number,
   lng: number,
@@ -197,4 +195,13 @@ export function getAreaRating(riskScore: number): number {
   if (riskScore >= 0.4) return 3;
   if (riskScore >= 0.2) return 4;
   return 5;
+}
+
+
+export function openInGoogleMaps(
+  start: { lat: number; lng: number },
+  end: { lat: number; lng: number }
+) {
+  const url = `https://www.google.com/maps/dir/?api=1&origin=${start.lat},${start.lng}&destination=${end.lat},${end.lng}&travelmode=driving`;
+  window.open(url, '_blank');
 }

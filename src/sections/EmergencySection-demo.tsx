@@ -1,178 +1,226 @@
-import { useState, useCallback, useMemo } from 'react';
-import { Phone, MessageSquare, AlertCircle, Users, MapPin } from 'lucide-react';
+function buildOverpassQuery(lat: number, lng: number, radius = 2000) {
+  return `
+    [out:json];
+    (
+      node["amenity"~"police|hospital|fire_station|clinic"](around:${radius},${lat},${lng});
+      node["railway"="station"](around:${radius},${lat},${lng});
+    );
+    out body;
+  `;
+}
+async function fetchSafePlaces(lat: number, lng: number) {
+  const query = buildOverpassQuery(lat, lng);
 
-import contactsData from '../data/contacts.json';
-import { hasSmsApi } from '../logic/env';
-import type { Contact } from '../types';
+  const res = await fetch('https://overpass-api.de/api/interpreter', {
+    method: 'POST',
+    body: query,
+  });
 
-const contacts: Contact[] = contactsData as Contact[];
+  const data = await res.json();
+  console.log(data)
 
-export default function EmergencySection() {
-  const [isSosActive, setIsSosActive] = useState(false);
-  const [userLocation, setUserLocation] = useState<{ lat: number; lng: number } | null>(null);
-  const [alertSent, setAlertSent] = useState(false);
+  return data.elements.map((el: any) => ({
+    id: `osm-${el.id}`,
+    lat: el.lat,
+    lng: el.lon,
+    name: el.tags?.name ?? 'Unnamed Place',
+    category:
+      el.tags?.amenity ??
+      (el.tags?.railway === 'station' ? 'transport' : 'other'),
+    address:
+      el.tags?.['addr:street']
+        ? `${el.tags['addr:street']} ${el.tags['addr:housenumber'] ?? ''}`
+        : 'Address unavailable',
+    phone: el.tags?.phone ?? null,
+  }));
+}
 
-  const getCurrentLocation = useCallback((): Promise<{ lat: number; lng: number }> => {
-    return new Promise((resolve, reject) => {
-      if ('geolocation' in navigator) {
-        navigator.geolocation.getCurrentPosition(
-          (position) => {
-            resolve({
-              lat: position.coords.latitude,
-              lng: position.coords.longitude,
-            });
-          },
-          () => {
-            // Default to NYC if location unavailable
-            resolve({ lat: 40.7549, lng: -73.9840 });
-          }
-        );
-      } else {
-        resolve({ lat: 40.7549, lng: -73.9840 });
-      }
-    });
+
+import { useState, useMemo } from 'react';
+import { MapPin, Building2, Phone, Navigation, Filter } from 'lucide-react';
+
+import safePlacesData from '../data/safePlaces.json';
+import { calculateDistance } from '../logic/risk';
+import type { SafePlace } from '../types';
+
+
+
+const safePlaces: SafePlace[] = safePlacesData as SafePlace[];
+
+/** ✅ Mumbai default (change dynamically later) */
+const DEFAULT_LOCATION = { lat: 19.0760, lng: 72.8777 };
+
+/** ✅ SINGLE SOURCE OF TRUTH FOR CATEGORIES */
+const categoryInfo: Record<
+  string,
+  { icon: string; label: string }
+> = {
+  police: { icon: '👮', label: 'Police Station' },
+  hospital: { icon: '🏥', label: 'Hospital' },
+  fire_station: { icon: '🚒', label: 'Fire Station' },
+  public_building: { icon: '🏛', label: 'Public Building' },
+  shelter: { icon: '🏠', label: 'Shelter' },
+  transport: { icon: '🚇', label: 'Transport Hub' },
+  safe_zone: { icon: '🛣', label: 'Safe Zone' }
+};
+
+export default function SafePlacesSection({location}:{lat:number,lng:number}) {
+  const [userLocation] = useState(DEFAULT_LOCATION);
+  const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
+  const [maxDistance, setMaxDistance] = useState<number>(5); // km
+
+  /** ✅ FIXED FILTER PIPELINE */
+  const placesWithDistance = useMemo(() => {
+    return safePlaces
+      .map((place) => ({
+        ...place,
+        distance: calculateDistance(
+          userLocation.lat,
+          userLocation.lng,
+          place.lat,
+          place.lng
+        ),
+      }))
+      .filter((place) =>
+        selectedCategory ? place.category === selectedCategory : true
+      )
+      .filter((place) => place.distance <= maxDistance)
+      .sort((a, b) => a.distance - b.distance);
+  }, [userLocation, selectedCategory, maxDistance]);
+
+  /** ✅ ONLY SHOW CATEGORIES THAT EXIST */
+  const categories = useMemo(() => {
+    return Array.from(
+      new Set(safePlaces.map((p) => p.category))
+    );
   }, []);
 
-  const handleSosPress = useCallback(async () => {
-    setIsSosActive(true);
-    
-    const location = await getCurrentLocation();
-    setUserLocation(location);
-
-    // Simulate sending alerts to contacts
-    const smsEnabled = hasSmsApi();
-    
-    contacts.forEach((contact) => {
-      const message = `🚨 EMERGENCY ALERT: I need help! My location: https://maps.google.com/?q=${location.lat},${location.lng}`;
-      
-      if (smsEnabled) {
-        // TODO: Call SMS API when VITE_SMS_API_KEY is set
-        console.log(`[SMS API] Sending to ${contact.name}: ${message}`);
-      } else {
-        console.log(`[SIMULATED] Alert to ${contact.name} (${contact.phone}): ${message}`);
-      }
-    });
-
-    setAlertSent(true);
-
-    // Reset after 5 seconds
-    setTimeout(() => {
-      setIsSosActive(false);
-      setAlertSent(false);
-    }, 5000);
-  }, [getCurrentLocation]);
-
-  const emergencyNumbers = useMemo(() => [
-    { name: 'Emergency', number: '911', icon: '🚨' },
-    { name: 'Police', number: '911', icon: '👮' },
-    { name: 'Fire', number: '911', icon: '🚒' },
-    { name: 'Ambulance', number: '911', icon: '🚑' },
-  ], []);
+  const openDirections = (place: SafePlace) => {
+    window.open(
+      `https://www.google.com/maps/dir/?api=1&destination=${place.lat},${place.lng}`,
+      '_blank'
+    );
+  };
 
   return (
     <section className="space-y-4">
-      <div className="flex items-center gap-2 mb-4">
-        <AlertCircle className="w-5 h-5 text-risk-critical" />
-        <h2 className="text-xl font-bold">Emergency Assistance</h2>
+      <div className="flex items-center gap-2">
+        <Building2 className="w-5 h-5 text-risk-safe" />
+        <h2 className="text-xl font-bold">Safe Places Nearby</h2>
       </div>
 
-      {/* SOS Button */}
-      <div className="glass-panel p-6 text-center">
-        <button
-          onClick={handleSosPress}
-          disabled={isSosActive}
-          className={`relative w-32 h-32 rounded-full mx-auto flex items-center justify-center text-2xl font-bold transition-all ${
-            isSosActive
-              ? 'bg-risk-critical text-white pulse-danger'
-              : 'bg-gradient-to-br from-risk-critical to-risk-high text-white hover:scale-105 shadow-glow-danger'
-          }`}
-        >
-          {isSosActive ? (
-            <span className="animate-pulse">SENDING...</span>
-          ) : (
-            'SOS'
-          )}
-        </button>
-        
-        <p className="mt-4 text-sm text-muted-foreground">
-          {alertSent 
-            ? '✓ Alerts sent to all trusted contacts'
-            : 'Press to alert trusted contacts with your location'}
-        </p>
+      {/* FILTERS */}
+      <div className="glass-panel p-4">
+        <div className="flex items-center gap-2 mb-3">
+          <Filter className="w-4 h-4 text-muted-foreground" />
+          <span className="text-sm font-medium">Filter by type</span>
+        </div>
 
-        {userLocation && alertSent && (
-          <div className="mt-3 flex items-center justify-center gap-2 text-xs text-muted-foreground">
-            <MapPin className="w-3 h-3" />
-            <span>Location shared: {userLocation.lat.toFixed(4)}, {userLocation.lng.toFixed(4)}</span>
+        <div className="flex flex-wrap gap-2 mb-4">
+          <button
+            onClick={() => setSelectedCategory(null)}
+            className={`px-3 py-1.5 rounded-full text-sm ${
+              selectedCategory === null
+                ? 'bg-primary text-primary-foreground'
+                : 'bg-secondary'
+            }`}
+          >
+            All
+          </button>
+
+          {categories.map((cat) => (
+            <button
+              key={cat}
+              onClick={() => setSelectedCategory(cat)}
+              className={`px-3 py-1.5 rounded-full text-sm flex items-center gap-1.5 ${
+                selectedCategory === cat
+                  ? 'bg-primary text-primary-foreground'
+                  : 'bg-secondary'
+              }`}
+            >
+              <span>{categoryInfo[cat]?.icon ?? '📍'}</span>
+              {categoryInfo[cat]?.label ?? cat}
+            </button>
+          ))}
+        </div>
+
+        <div className="flex items-center gap-3">
+          <span className="text-sm text-muted-foreground">Distance</span>
+          <input
+            type="range"
+            min="1"
+            max="15"
+            step="1"
+            value={maxDistance}
+            onChange={(e) => setMaxDistance(Number(e.target.value))}
+            className="flex-1 accent-primary"
+          />
+          <span className="text-sm w-16 text-right">{maxDistance} km</span>
+        </div>
+      </div>
+
+      {/* RESULTS */}
+      <div className="space-y-3">
+        {placesWithDistance.length === 0 ? (
+          <div className="glass-panel p-8 text-center">
+            <MapPin className="w-10 h-10 mx-auto mb-3 text-muted-foreground" />
+            <p className="text-muted-foreground">
+              No safe places found within {maxDistance} km
+            </p>
           </div>
+        ) : (
+          placesWithDistance.map((place) => {
+            const info = categoryInfo[place.category] ?? {
+              icon: '📍',
+              label: place.category,
+            };
+
+            return (
+              <div key={place.id} className="glass-panel p-4">
+                <div className="flex items-start gap-3">
+                  <div className="text-2xl">{info.icon}</div>
+                  <div className="flex-1">
+                    <div className="flex items-center gap-2">
+                      <h3 className="font-semibold">{place.name}</h3>
+                      <span className="text-xs bg-secondary px-2 py-0.5 rounded">
+                        {(place.distance * 1000).toFixed(0)} m
+                      </span>
+                    </div>
+
+                    <p className="text-sm text-muted-foreground">
+                      {place.address}
+                    </p>
+
+                    <div className="flex gap-2 mt-3">
+                      {place.phone && (
+                        <a
+                          href={`tel:${place.phone}`}
+                          className="px-3 py-1.5 rounded bg-risk-safe/20 text-risk-safe text-sm"
+                        >
+                          <Phone className="inline w-3 h-3 mr-1" />
+                          Call
+                        </a>
+                      )}
+
+                      <button
+                        onClick={() => openDirections(place)}
+                        className="px-3 py-1.5 rounded bg-primary/20 text-primary text-sm"
+                      >
+                        <Navigation className="inline w-3 h-3 mr-1" />
+                        Directions
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            );
+          })
         )}
       </div>
 
-      {/* Quick Dial */}
-      <div className="glass-panel p-4">
-        <h3 className="font-semibold mb-3 flex items-center gap-2">
-          <Phone className="w-4 h-4" />
-          Emergency Services
-        </h3>
-        
-        <div className="grid grid-cols-2 gap-2">
-          {emergencyNumbers.map((service) => (
-            <a
-              key={service.name}
-              href={`tel:${service.number}`}
-              className="flex items-center gap-3 p-3 rounded-lg bg-secondary hover:bg-secondary/80 transition-colors"
-            >
-              <span className="text-xl">{service.icon}</span>
-              <div>
-                <span className="font-medium block">{service.name}</span>
-                <span className="text-xs text-muted-foreground">{service.number}</span>
-              </div>
-            </a>
-          ))}
-        </div>
-      </div>
-
-      {/* Trusted Contacts */}
-      <div className="glass-panel p-4">
-        <h3 className="font-semibold mb-3 flex items-center gap-2">
-          <Users className="w-4 h-4" />
-          Trusted Contacts
-        </h3>
-        
-        <div className="space-y-2">
-          {contacts.map((contact) => (
-            <div
-              key={contact.id}
-              className="flex items-center justify-between p-3 rounded-lg bg-secondary/50"
-            >
-              <div className="flex items-center gap-3">
-                <div className="w-10 h-10 rounded-full bg-primary/20 flex items-center justify-center text-primary font-semibold">
-                  {contact.name.charAt(0)}
-                </div>
-                <div>
-                  <span className="font-medium block">{contact.name}</span>
-                  <span className="text-xs text-muted-foreground">{contact.relationship}</span>
-                </div>
-              </div>
-              
-              <div className="flex items-center gap-2">
-                <a
-                  href={`tel:${contact.phone}`}
-                  className="p-2 rounded-lg bg-risk-safe/20 text-risk-safe hover:bg-risk-safe/30 transition-colors"
-                >
-                  <Phone className="w-4 h-4" />
-                </a>
-                <a
-                  href={`sms:${contact.phone}`}
-                  className="p-2 rounded-lg bg-primary/20 text-primary hover:bg-primary/30 transition-colors"
-                >
-                  <MessageSquare className="w-4 h-4" />
-                </a>
-              </div>
-            </div>
-          ))}
-        </div>
-      </div>
+      <p className="text-xs text-muted-foreground text-center">
+        {placesWithDistance.length} safe places within {maxDistance} km
+      </p>
     </section>
   );
 }

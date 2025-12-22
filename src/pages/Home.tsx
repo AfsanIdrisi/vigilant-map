@@ -10,20 +10,52 @@ import { getEnvConfig } from '../logic/env';
 import { getTimeBasedSafety } from '../logic/risk';
 
 type ActiveSection = 'map' | 'threats' | 'routes' | 'emergency' | 'places';
+function setCookie(name: string, value: string, days = 1) {
+  const expires = new Date(Date.now() + days * 864e5).toUTCString();
+  document.cookie = `${name}=${encodeURIComponent(value)}; expires=${expires}; path=/`;
+}
+
+function getCookie(name: string) {
+  return document.cookie
+    .split('; ')
+    .find(row => row.startsWith(name + '='))
+    ?.split('=')[1];
+}
 
 export default function Home() {
   const [activeSection, setActiveSection] = useState<ActiveSection>('map');
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [timeWarning, setTimeWarning] = useState<string | null>(null);
+  const [location, setLocation] = useState<{ lat: number; lng: number } | null>(null);
 
   useEffect(() => {
-    // Initialize env detection
     getEnvConfig();
 
+
     // Check time-based safety
+    const loc = {
+      coords: {
+        latitude: 19.0596,
+        longitude: 72.8295,
+        accuracy: 120,              // meters
+        altitude: null,             // often null
+        altitudeAccuracy: null,     // often null
+        heading: null,              // device direction
+        speed: null                 // m/s
+      },
+      timestamp: 1735219823000      // Unix timestamp (ms)
+    }
+
+    setLocation({ lat: loc.coords.latitude, lng: loc.coords.longitude });
     const timeSafety = getTimeBasedSafety();
+    // console.log(timeSafety)
+
     setTimeWarning(timeSafety.warning);
   }, []);
+
+
+
+
   const navItems: {
     id: ActiveSection;
     label: string;
@@ -125,14 +157,14 @@ export default function Home() {
 
       {/* Main Content */}
       <main className="container mx-auto px-4 py-6">
-        <div className="grid lg:grid-cols-3 gap-6">
+        <div className={`grid ${activeSection!="routes"? "lg:grid-cols-3" : "lg:grid-cols-1"} gap-6`}>
           {/* Map Section - Always visible on desktop */}
-          <div className={`lg:col-span-2 ${activeSection !== 'map' && activeSection !== 'routes' ? 'hidden lg:block' : ''}`}>
-            <RiskMapSection />
-          </div>
+          {activeSection!="routes" && <div className={`lg:col-span-2 ${activeSection !== 'map' && activeSection !== 'routes' ? 'hidden lg:block' : ''}`}>
+            <RiskMapSection location={location} />
+          </div>}
 
           {/* Side Panel */}
-          <div className="space-y-6">
+          <div className="space-y-6 w-full ">
             {(activeSection === 'map' || activeSection === 'threats') && (
               <ThreatInsightsSection />
             )}
@@ -155,7 +187,7 @@ export default function Home() {
       {/* Mobile Bottom Nav */}
       <nav className="md:hidden fixed bottom-0 left-0 right-0 bg-background/80 backdrop-blur-xl border-t border-border z-50">
         <div className="grid grid-cols-5">
-          {navItems.map((item) =>{
+          {navItems.map((item) => {
             const Icon = item.icon
             return <button
               key={item.id}

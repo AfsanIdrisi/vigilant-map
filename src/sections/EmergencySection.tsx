@@ -35,16 +35,16 @@
 
 //   const handleSosPress = useCallback(async () => {
 //     setIsSosActive(true);
-    
+
 //     const location = await getCurrentLocation();
 //     setUserLocation(location);
 
 //     // Simulate sending alerts to contacts
 //     const smsEnabled = hasSmsApi();
-    
+
 //     contacts.forEach((contact) => {
 //       const message = `🚨 EMERGENCY ALERT: I need help! My location: https://maps.google.com/?q=${location.lat},${location.lng}`;
-      
+
 //       if (smsEnabled) {
 //         // TODO: Call SMS API when VITE_SMS_API_KEY is set
 //         console.log(`[SMS API] Sending to ${contact.name}: ${message}`);
@@ -93,7 +93,7 @@
 //             'SOS'
 //           )}
 //         </button>
-        
+
 //         <p className="mt-4 text-sm text-muted-foreground">
 //           {alertSent 
 //             ? '✓ Alerts sent to all trusted contacts'
@@ -114,7 +114,7 @@
 //           <Phone className="w-4 h-4" />
 //           Emergency Services
 //         </h3>
-        
+
 //         <div className="grid grid-cols-2 gap-2">
 //           {emergencyNumbers.map((service) => (
 //             <a
@@ -138,7 +138,7 @@
 //           <Users className="w-4 h-4" />
 //           Trusted Contacts
 //         </h3>
-        
+
 //         <div className="space-y-2">
 //           {contacts.map((contact) => (
 //             <div
@@ -154,7 +154,7 @@
 //                   <span className="text-xs text-muted-foreground">{contact.relationship}</span>
 //                 </div>
 //               </div>
-              
+
 //               <div className="flex items-center gap-2">
 //                 <a
 //                   href={`tel:${contact.phone}`}
@@ -302,13 +302,13 @@ Location: https://maps.google.com/?q=${location.lat},${location.lng}`;
   //  ], []);
 
   const emergencyNumbers = useMemo(() => [
-  { name: 'National Emergency', number: '112', icon: '🚨' },   // Unified emergency number
-  { name: 'Police', number: '100', icon: '👮' },
-  { name: 'Fire Brigade', number: '101', icon: '🚒' },
-  { name: 'Ambulance', number: '108', icon: '🚑' },
-  { name: 'Women Helpline', number: '1091', icon: '👩' },
-  { name: 'Child Helpline', number: '1098', icon: '🧒' },
-], []);
+    { name: 'National Emergency', number: '112', icon: '🚨' },   // Unified emergency number
+    { name: 'Police', number: '100', icon: '👮' },
+    { name: 'Fire Brigade', number: '101', icon: '🚒' },
+    { name: 'Ambulance', number: '108', icon: '🚑' },
+    { name: 'Women Helpline', number: '1091', icon: '👩' },
+    { name: 'Child Helpline', number: '1098', icon: '🧒' },
+  ], []);
 
 
   return (
@@ -323,11 +323,10 @@ Location: https://maps.google.com/?q=${location.lat},${location.lng}`;
         <button
           onClick={handleSosPress}
           disabled={isSosActive}
-          className={`relative w-32 h-32 rounded-full mx-auto flex items-center justify-center text-2xl font-bold ${
-            isSosActive
+          className={`relative w-32 h-32 rounded-full mx-auto flex items-center justify-center text-2xl font-bold ${isSosActive
               ? 'bg-risk-critical text-white animate-pulse'
               : 'bg-gradient-to-br from-risk-critical to-risk-high text-white'
-          }`}
+            }`}
         >
           {isSosActive ? 'SENDING...' : 'SOS'}
         </button>
@@ -343,136 +342,137 @@ Location: https://maps.google.com/?q=${location.lat},${location.lng}`;
           </div>
         )}
       </div>
-     <div className="grid grid-cols-2 gap-2">
-         {emergencyNumbers.map((service) => (
-             <a
-               key={service.name}
-               href={`tel:${service.number}`}
-               className="flex items-center gap-3 p-3 rounded-lg bg-secondary hover:bg-secondary/80 transition-colors"
-             >
-               <span className="text-xl">{service.icon}</span>
-               <div>
-                 <span className="font-medium block">{service.name}</span>
-                 <span className="text-xs text-muted-foreground">{service.number}</span>
-               </div>
-             </a>
-           ))}
-         </div>
+      <div className="grid grid-cols-2 gap-2">
+        {emergencyNumbers.map((service) => (
+          <a
+            key={service.name}
+            href={`tel:${service.number}`}
+            className="flex items-center gap-3 p-3 rounded-lg bg-secondary hover:bg-secondary/80 transition-colors"
+          >
+            <span className="text-xl">{service.icon}</span>
+            <div>
+              <span className="font-medium block">{service.name}</span>
+              <span className="text-xs text-muted-foreground">{service.number}</span>
+            </div>
+          </a>
+        ))}
+      </div>
       {/* </div> */}
-    {/* Trusted Contacts */}
-<div className="glass-panel p-4">
-  <h3 className="font-semibold mb-4 flex items-center gap-2">
-    <Users className="w-4 h-4 text-primary" />
-    Trusted Contacts
-  </h3>
+      {/* Trusted Contacts */}
+      <div className="glass-panel p-4">
+        <h3 className="font-semibold mb-4 flex items-center gap-2">
+          <Users className="w-4 h-4 text-primary" />
+          Trusted Contacts
+        </h3>
 
-  {/* Add / Edit Contact Form */}
-  <div className="mb-5 p-4 rounded-xl border border-border/40 bg-secondary/30">
-    <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
-      
-      {/* Name */}
-      <div className="relative">
-        <Users className="w-4 h-4 absolute left-3 top-3 text-muted-foreground" />
-        <input
-          placeholder="Contact name"
-          value={form.name}
-          onChange={(e) => setForm({ ...form, name: e.target.value })}
-          className="w-full pl-10 pr-3 py-2 rounded-lg   border bg-background border-border/40 focus:outline-none focus:ring-1 focus:ring-primary"
-        />
-      </div>
+        {/* Add / Edit Contact Form */}
+        <div className="mb-5 p-4 rounded-xl border border-border/40 bg-secondary/30">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
 
-      {/* Phone */}
-      <div className="relative">
-        <Phone className="w-4 h-4 absolute left-3 top-3 text-muted-foreground" />
-        <input
-          placeholder="Phone number"
-          value={form.phone}
-          onChange={(e) => setForm({ ...form, phone: e.target.value })}
-          className="w-full pl-10 pr-3 py-2 rounded-lg bg-background/60 border border-border/40 focus:outline-none focus:ring-1 focus:ring-primary"
-        />
-      </div>
+            {/* Name */}
+            <div className="relative">
+              <Users className="w-4 h-4 absolute left-3 top-3 text-muted-foreground" />
+              <input
+                placeholder="Contact name"
+                value={form.name}
+                onChange={(e) => setForm({ ...form, name: e.target.value })}
+                className="w-full pl-10 pr-3 py-2 rounded-lg   border bg-background border-border/40 focus:outline-none focus:ring-1 focus:ring-primary"
+              />
+            </div>
 
-      {/* Relationship */}
-      <div className="relative">
-        <MessageSquare className="w-4 h-4 absolute left-3 top-3 text-muted-foreground" />
-        <input
-          placeholder="Relationship (Parent, Friend…)"
-          value={form.relationship}
-          onChange={(e) => setForm({ ...form, relationship: e.target.value })}
-          className="w-full pl-10 pr-3 py-2 rounded-lg bg-background/60 border border-border/40 focus:outline-none focus:ring-1 focus:ring-primary"
-        />
-      </div>
-    </div>
+            {/* Phone */}
+            <div className="relative">
+              <Phone className="w-4 h-4 absolute left-3 top-3 text-muted-foreground" />
+              <input
+                placeholder="Phone number"
+                inputMode='numeric'
+                pattern='[0-9]*'
+                value={form.phone}
+                onChange={(e) => setForm({ ...form, phone: e.target.value.replace(/[^0-9]/g, '') })}
+                className="w-full pl-10 pr-3 py-2 rounded-lg bg-background/60 border border-border/40 focus:outline-none focus:ring-1 focus:ring-primary"
+              />
+            </div>
 
-    <div className="flex justify-end mt-4">
-      <button
-        onClick={handleAddOrUpdate}
-        className={`flex items-center gap-2 px-4 py-2 rounded-lg text-sm font-medium transition ${
-          editingContact
-            ? 'bg-primary text-white hover:bg-primary/90'
-            : 'bg-risk-safe text-white hover:bg-risk-safe/90'
-        }`}
-      >
-        <Plus className="w-4 h-4" />
-        {editingContact ? 'Update Contact' : 'Add Contact'}
-      </button>
-    </div>
-  </div>
-
-  {/* Contact List */}
-  <div className="space-y-3">
-    {contacts.map((contact) => (
-      <div
-        key={contact.id}
-        className="flex items-center justify-between p-4 rounded-xl bg-secondary/40 border border-border/40 hover:bg-secondary/60 transition"
-      >
-        {/* Contact Info */}
-        <div className="flex items-center gap-3">
-          <div className="w-10 h-10 rounded-full bg-primary/20 flex items-center justify-center text-primary font-semibold">
-            {contact.name.charAt(0)}
-          </div>
-          <div>
-            <div className="font-medium leading-tight">{contact.name}</div>
-            <div className="text-xs text-muted-foreground">
-              {contact.relationship || 'Trusted Contact'}
+            {/* Relationship */}
+            <div className="relative">
+              <MessageSquare className="w-4 h-4 absolute left-3 top-3 text-muted-foreground" />
+              <input
+                placeholder="Relationship (Parent, Friend…)"
+                value={form.relationship}
+                onChange={(e) => setForm({ ...form, relationship: e.target.value })}
+                className="w-full pl-10 pr-3 py-2 rounded-lg bg-background/60 border border-border/40 focus:outline-none focus:ring-1 focus:ring-primary"
+              />
             </div>
           </div>
+
+          <div className="flex justify-end mt-4">
+            <button
+              onClick={handleAddOrUpdate}
+              className={`flex items-center gap-2 px-4 py-2 rounded-lg text-sm font-medium transition ${editingContact
+                  ? 'bg-primary text-white hover:bg-primary/90'
+                  : 'bg-risk-safe text-white hover:bg-risk-safe/90'
+                }`}
+            >
+              <Plus className="w-4 h-4" />
+              {editingContact ? 'Update Contact' : 'Add Contact'}
+            </button>
+          </div>
         </div>
 
-        {/* Actions */}
-        <div className="flex items-center gap-2">
-          <a
-            href={`tel:${contact.phone}`}
-            className="p-2 rounded-lg bg-risk-safe/20 text-risk-safe hover:bg-risk-safe/30 transition"
-          >
-            <Phone className="w-4 h-4" />
-          </a>
+        {/* Contact List */}
+        <div className="space-y-3">
+          {contacts.map((contact) => (
+            <div
+              key={contact.id}
+              className="flex items-center justify-between p-4 rounded-xl bg-secondary/40 border border-border/40 hover:bg-secondary/60 transition"
+            >
+              {/* Contact Info */}
+              <div className="flex items-center gap-3">
+                <div className="w-10 h-10 rounded-full bg-primary/20 flex items-center justify-center text-primary font-semibold">
+                  {contact.name.charAt(0)}
+                </div>
+                <div>
+                  <div className="font-medium leading-tight">{contact.name}</div>
+                  <div className="text-xs text-muted-foreground">
+                    {contact.relationship || 'Trusted Contact'}
+                  </div>
+                </div>
+              </div>
 
-          <a
-            href={`sms:${contact.phone}`}
-            className="p-2 rounded-lg bg-primary/20 text-primary hover:bg-primary/30 transition"
-          >
-            <MessageSquare className="w-4 h-4" />
-          </a>
+              {/* Actions */}
+              <div className="flex items-center gap-2">
+                <a
+                  href={`tel:${contact.phone}`}
+                  className="p-2 rounded-lg bg-risk-safe/20 text-risk-safe hover:bg-risk-safe/30 transition"
+                >
+                  <Phone className="w-4 h-4" />
+                </a>
 
-          <button
-            onClick={() => handleEdit(contact)}
-            className="p-2 rounded-lg bg-secondary hover:bg-secondary/80 transition"
-          >
-            <Edit className="w-4 h-4" />
-          </button>
+                <a
+                  href={`sms:${contact.phone}`}
+                  className="p-2 rounded-lg bg-primary/20 text-primary hover:bg-primary/30 transition"
+                >
+                  <MessageSquare className="w-4 h-4" />
+                </a>
 
-          <button
-            onClick={() => handleDelete(contact.id)}
-            className="p-2 rounded-lg bg-risk-critical/20 text-risk-critical hover:bg-risk-critical/30 transition"
-          >
-            <Trash2 className="w-4 h-4" />
-          </button>
+                <button
+                  onClick={() => handleEdit(contact)}
+                  className="p-2 rounded-lg bg-secondary hover:bg-secondary/80 transition"
+                >
+                  <Edit className="w-4 h-4" />
+                </button>
+
+                <button
+                  onClick={() => handleDelete(contact.id)}
+                  className="p-2 rounded-lg bg-risk-critical/20 text-risk-critical hover:bg-risk-critical/30 transition"
+                >
+                  <Trash2 className="w-4 h-4" />
+                </button>
+              </div>
+            </div>
+          ))}
         </div>
       </div>
-    ))}
-  </div>
-</div>
 
     </section>
   );
