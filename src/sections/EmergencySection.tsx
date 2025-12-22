@@ -179,6 +179,14 @@
 
 import { useState, useCallback, useMemo, useEffect } from 'react';
 import { Phone, MessageSquare, AlertCircle, Users, MapPin, Trash2, Edit, Plus } from 'lucide-react';
+import {
+  Siren,
+  Shield,
+  Flame,
+  Ambulance,
+  UserRound,
+  Baby,
+} from "lucide-react";
 
 import contactsData from '../data/contacts.json';
 import { hasSmsApi } from '../logic/env';
@@ -294,21 +302,49 @@ Location: https://maps.google.com/?q=${location.lat},${location.lng}`;
   /* -------------------------------------------
      Emergency numbers
   -------------------------------------------- */
-  //  const emergencyNumbers = useMemo(() => [
-  //    { name: 'Emergency', number: '911', icon: '🚨' },
-  //    { name: 'Police', number: '911', icon: '👮' },
-  //    { name: 'Fire', number: '911', icon: '🚒' },
-  //    { name: 'Ambulance', number: '911', icon: '🚑' },
-  //  ], []);
+ 
+  // const emergencyNumbers = useMemo(() => [
+  //   { name: 'National Emergency', number: '112', icon: '🚨' },   // Unified emergency number
+  //   { name: 'Police', number: '100', icon: '👮' },
+  //   { name: 'Fire Brigade', number: '101', icon: '🚒' },
+  //   { name: 'Ambulance', number: '108', icon: '🚑' },
+  //   { name: 'Women Helpline', number: '1091', icon: '👩' },
+  //   { name: 'Child Helpline', number: '1098', icon: '🧒' },
+  // ], []);
 
   const emergencyNumbers = useMemo(() => [
-    { name: 'National Emergency', number: '112', icon: '🚨' },   // Unified emergency number
-    { name: 'Police', number: '100', icon: '👮' },
-    { name: 'Fire Brigade', number: '101', icon: '🚒' },
-    { name: 'Ambulance', number: '108', icon: '🚑' },
-    { name: 'Women Helpline', number: '1091', icon: '👩' },
-    { name: 'Child Helpline', number: '1098', icon: '🧒' },
-  ], []);
+  {
+    name: "National Emergency",
+    number: "112",
+    icon: Siren,
+  },
+  {
+    name: "Police",
+    number: "100",
+    icon: Shield,
+  },
+  {
+    name: "Fire Brigade",
+    number: "101",
+    icon: Flame,
+  },
+  {
+    name: "Ambulance",
+    number: "108",
+    icon: Ambulance,
+  },
+  {
+    name: "Women Helpline",
+    number: "1091",
+    icon: UserRound,
+  },
+  {
+    name: "Child Helpline",
+    number: "1098",
+    icon: Baby,
+  },
+], []);
+
 
 
   return (
@@ -342,7 +378,7 @@ Location: https://maps.google.com/?q=${location.lat},${location.lng}`;
           </div>
         )}
       </div>
-      <div className="grid grid-cols-2 gap-2">
+      {/* <div className="grid grid-cols-2 gap-2">
         {emergencyNumbers.map((service) => (
           <a
             key={service.name}
@@ -356,7 +392,29 @@ Location: https://maps.google.com/?q=${location.lat},${location.lng}`;
             </div>
           </a>
         ))}
+      </div> */}
+
+<div className="grid grid-cols-2 gap-2">
+  {emergencyNumbers.map((service) => (
+    <a
+      key={service.name}
+      href={`tel:${service.number}`}
+      className="flex items-center gap-3 p-3 rounded-lg bg-secondary hover:bg-secondary/80 transition-colors"
+    >
+      <div className="p-2 rounded-lg bg-risk-critical/15 text-risk-critical">
+        <service.icon className="w-5 h-5" />
       </div>
+
+      <div>
+        <span className="font-medium block">{service.name}</span>
+        <span className="text-xs text-muted-foreground">
+          {service.number}
+        </span>
+      </div>
+    </a>
+  ))}
+</div>
+
       {/* </div> */}
       {/* Trusted Contacts */}
       <div className="glass-panel p-4">
