@@ -71,7 +71,7 @@ export default function ThreatInsightsSection() {
       </div>
 
       {/* Nearby Incidents */}
-      <div className="glass-panel p-4 animate-slide-in-right">
+      <div className="glass-panel p-4 w-full animate-slide-in-right">
         <h3 className="font-semibold mb-3 flex items-center gap-2">
           <MapPin className="w-4 h-4" />
           Nearby Incidents
@@ -98,7 +98,7 @@ export default function ThreatInsightsSection() {
                         {riskLevel}
                       </span>
                     </div>
-                    <p className="text-sm text-muted-foreground truncate">
+                    <p className="text-sm text-muted-foreground ">
                       {incident.description}
                     </p>
                     <div className="flex items-center gap-3 mt-1.5 text-xs text-muted-foreground">

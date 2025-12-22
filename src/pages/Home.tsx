@@ -79,8 +79,8 @@ export default function Home() {
                 <Shield className="w-6 h-6 text-primary" />
               </div>
               <div>
-                <h1 className="font-bold text-lg tracking-tight">SafeGuard</h1>
-                <p className="text-xs text-muted-foreground">Real-Time Safety Awareness</p>
+                <h1 className="font-bold text-lg tracking-tight">Vigilant Map</h1>
+                {/* <p className="text-xs text-muted-foreground">Real-Time Safety Awareness</p> */}
               </div>
             </div>
 
@@ -118,7 +118,7 @@ export default function Home() {
           {/* Mobile Nav */}
           {mobileMenuOpen && (
             <nav className="md:hidden py-4 border-t border-border animate-fade-in">
-              <div className="grid grid-cols-5 gap-2">
+              <div className="grid grid-cols-4 gap-2">
                 {navItems.map((item) => {
                   const Icon = item.icon;
                   return (
@@ -186,7 +186,7 @@ export default function Home() {
 
       {/* Mobile Bottom Nav */}
       <nav className="md:hidden fixed bottom-0 left-0 right-0 bg-background/80 backdrop-blur-xl border-t border-border z-50">
-        <div className="grid grid-cols-5">
+        <div className="grid grid-cols-4">
           {navItems.map((item) => {
             const Icon = item.icon
             return <button

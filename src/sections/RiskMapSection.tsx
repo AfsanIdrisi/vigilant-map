@@ -97,7 +97,7 @@ export default function RiskMapSection({location}) {
         <MapContainer
           center={[location?.lat, location.lng]}
           zoom={14}
-          className="h-full w-full"
+          className="h-full "
           scrollWheelZoom
         >
           <TileLayer
