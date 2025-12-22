@@ -9,6 +9,78 @@ import SafePlacesSection from '../sections/SafePlacesSection';
 import { getEnvConfig } from '../logic/env';
 import { getTimeBasedSafety } from '../logic/risk';
 import AddToHomeHelp from '@/components/AddToHomeHelp';
+const LOCATIONS = [
+  {
+    id: "bandra",
+    label: "Bandra",
+    coords: {
+      latitude: 19.0596,
+      longitude: 72.8295,
+      accuracy: 120,
+      altitude: null,
+      altitudeAccuracy: null,
+      heading: null,
+      speed: null,
+    },
+    timestamp: 1735219823000,
+  },
+  {
+    id: "mahim",
+    label: "Mahim",
+    coords: {
+      latitude: 19.0425,
+      longitude: 72.8413,
+      accuracy: 95,
+      altitude: null,
+      altitudeAccuracy: null,
+      heading: null,
+      speed: null,
+    },
+    timestamp: 1735219880000,
+  },
+  {
+    id: "dadar",
+    label: "Dadar",
+    coords: {
+      latitude: 19.0176,
+      longitude: 72.8562,
+      accuracy: 80,
+      altitude: null,
+      altitudeAccuracy: null,
+      heading: null,
+      speed: null,
+    },
+    timestamp: 1735219940000,
+  },
+  {
+    id: "lower-parel",
+    label: "Lower Parel",
+    coords: {
+      latitude: 18.9977,
+      longitude: 72.8331,
+      accuracy: 70,
+      altitude: null,
+      altitudeAccuracy: null,
+      heading: null,
+      speed: null,
+    },
+    timestamp: 1735220000000,
+  },
+  {
+    id: "churchgate",
+    label: "Churchgate",
+    coords: {
+      latitude: 18.9350,
+      longitude: 72.8277,
+      accuracy: 90,
+      altitude: null,
+      altitudeAccuracy: null,
+      heading: null,
+      speed: null,
+    },
+    timestamp: 1735220060000,
+  },
+];
 
 type ActiveSection = 'map' | 'threats' | 'routes' | 'emergency' | 'places';
 function setCookie(name: string, value: string, days = 1) {
@@ -34,18 +106,7 @@ export default function Home() {
 
 
     // Check time-based safety
-    const loc = {
-      coords: {
-        latitude: 19.0596,
-        longitude: 72.8295,
-        accuracy: 120,              // meters
-        altitude: null,             // often null
-        altitudeAccuracy: null,     // often null
-        heading: null,              // device direction
-        speed: null                 // m/s
-      },
-      timestamp: 1735219823000      // Unix timestamp (ms)
-    }
+    const loc = LOCATIONS[0]
 
     setLocation({ lat: loc.coords.latitude, lng: loc.coords.longitude });
     const timeSafety = getTimeBasedSafety();
@@ -62,7 +123,7 @@ export default function Home() {
     label: string;
     icon: LucideIcon;
   }[] = [
-    { id: 'emergency', label: 'SOS', icon: Siren },
+      { id: 'emergency', label: 'SOS', icon: Siren },
       { id: 'map', label: 'Risk Map', icon: Map },
       // { id: 'threats', label: 'Insights', icon: ShieldAlert },
       { id: 'routes', label: 'Routes', icon: Clock10 },
@@ -84,6 +145,34 @@ export default function Home() {
                 {/* <p className="text-xs text-muted-foreground">Real-Time Safety Awareness</p> */}
               </div>
             </div>
+
+            <div className='flex gap-4 items-center justify-center'>
+
+            <div className="">
+              <select
+                value={location?.id}
+                onChange={(e) => {
+                  const selectedId = e.target.value;
+                  const loc = LOCATIONS.find(l => l.id === selectedId);
+
+                  if (!loc) return;
+
+                  setLocation({
+                    lat: loc.coords.latitude,
+                    lng: loc.coords.longitude,
+                  });
+                }}
+
+                className="w-full px-3 py-2 rounded-lg border border-border bg-background text-sm"
+              >
+                {LOCATIONS.map((loc) => (
+                  <option key={loc.id} value={loc.id}>
+                    {loc.label}
+                  </option>
+                ))}
+              </select>
+            </div>
+
 
             {/* Desktop Nav */}
             <nav className="hidden md:flex items-center gap-1">
@@ -114,6 +203,7 @@ export default function Home() {
             >
               {mobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
             </button>
+            </div>
           </div>
 
           {/* Mobile Nav */}
@@ -146,6 +236,7 @@ export default function Home() {
         </div>
       </header>
 
+
       {/* Time Warning Banner */}
       {timeWarning && (
         <div className="bg-risk-medium/20 border-b border-risk-medium/30 px-4 py-2 animate-fade-in">
@@ -155,12 +246,13 @@ export default function Home() {
           </div>
         </div>
       )}
+      <AddToHomeHelp />
 
       {/* Main Content */}
       <main className="container mx-auto px-4 py-6">
-        <div className={`grid ${activeSection!="routes"? "lg:grid-cols-3" : "lg:grid-cols-1"} gap-6`}>
+        <div className={`grid ${activeSection != "routes" ? "lg:grid-cols-3" : "lg:grid-cols-1"} gap-6`}>
           {/* Map Section - Always visible on desktop */}
-          {activeSection!="routes" && <div className={`lg:col-span-2 ${activeSection !== 'map' && activeSection !== 'routes' ? 'hidden lg:block' : ''}`}>
+          {activeSection != "routes" && <div className={`lg:col-span-2 ${activeSection !== 'map' && activeSection !== 'routes' ? 'hidden lg:block' : ''}`}>
             <RiskMapSection location={location} />
           </div>}
 
@@ -171,15 +263,15 @@ export default function Home() {
             )}
 
             {activeSection === 'routes' && (
-              <RoutePlannerSection />
+              <RoutePlannerSection  />
             )}
 
             {activeSection === 'emergency' && (
-              <EmergencySection />
+              <EmergencySection  />
             )}
 
             {activeSection === 'places' && (
-              <SafePlacesSection />
+              <SafePlacesSection location={location} />
             )}
           </div>
         </div>
@@ -212,7 +304,6 @@ export default function Home() {
       </nav>
 
       {/* Bottom padding for mobile nav */}
-      <AddToHomeHelp/>
       <div className="md:hidden h-20" />
     </div>
   );

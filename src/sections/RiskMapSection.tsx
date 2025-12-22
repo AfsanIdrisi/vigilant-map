@@ -56,6 +56,33 @@ export function calculateDistance(
 function degToRad(deg: number): number {
   return deg * (Math.PI / 180);
 }
+const SEVERITY_COLORS: Record<number, string> = {
+  1: '#22c55e', // green - low
+  2: '#84cc16', // lime
+  3: '#eab308', // yellow
+  4: '#f97316', // orange
+  5: '#ef4444', // red - critical
+};
+
+function getIncidentIcon(severity: number) {
+  const color = SEVERITY_COLORS[severity] ?? '#6b7280';
+
+  return L.divIcon({
+    className: '',
+    html: `
+      <div style="
+        width:14px;
+        height:14px;
+        background:${color};
+        border-radius:50%;
+        border:2px solid white;
+        box-shadow:0 0 6px rgba(0,0,0,0.5);
+      "></div>
+    `,
+    iconSize: [14, 14],
+    iconAnchor: [7, 7],
+  });
+}
 
 
 /* ============================
@@ -108,8 +135,8 @@ export default function RiskMapSection({location}) {
             center={[location.lat,location.lng]}
             radius={10}
             pathOptions={{
-              color: "red",
-              fillColor: "red",
+              color: "blue",
+              fillColor: "blue",
               fillOpacity: 1,
             }}
           >
@@ -137,10 +164,8 @@ export default function RiskMapSection({location}) {
             />
           ))}
 
-          {/* INCIDENT MARKERS */}
-          const INCIDENT_RADIUS_KM = 0.005; // 5 meters
      
-          {incidents
+          {/* {incidents
             .filter((incident) =>
               calculateDistance(
                 location?.lat,
@@ -166,7 +191,36 @@ export default function RiskMapSection({location}) {
                   </div>
                 </Popup>
               </Marker>
-            ))}
+            ))} */}
+            {incidents
+  .filter((incident) =>
+    calculateDistance(
+      location.lat,
+      location.lng,
+      incident.lat,
+      incident.lng
+    ) <= INCIDENT_RADIUS_KM
+  )
+  .map((incident) => (
+    <Marker
+      key={incident.id}
+      position={[incident.lat, incident.lng]}
+      icon={getIncidentIcon(incident.severity)}
+    >
+      <Popup>
+        <div className="space-y-1">
+          <div className="font-semibold capitalize">
+            {incident.type}
+          </div>
+          <div>Severity: {incident.severity}</div>
+          <div className="text-xs text-muted-foreground">
+            {incident.description}
+          </div>
+        </div>
+      </Popup>
+    </Marker>
+  ))}
+
 
         </MapContainer>
       </div>

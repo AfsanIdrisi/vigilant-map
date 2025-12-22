@@ -1,0 +1,12 @@
+body {
+    font-family: Arial, sans-serif;
+}
+
+.card {
+    margin-bottom: 20px;
+}
+
+#bookingForm {
+    max-width: 500px;
+    margin: 0 auto;
+}

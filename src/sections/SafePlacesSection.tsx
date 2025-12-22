@@ -196,7 +196,7 @@ import { MapPin, Building2, Phone, Navigation, Filter } from 'lucide-react';
 import { calculateDistance } from '../logic/risk';
 import type { SafePlace } from '../types';
 
-const DEFAULT_LOCATION = { lat: 19.0760, lng: 72.8777 };
+// const DEFAULT_LOCATION = { lat: 19.0760, lng: 72.8777 };
 
 
 function buildOverpassQuery(lat: number, lng: number, radius = 2000) {
@@ -206,7 +206,7 @@ function buildOverpassQuery(lat: number, lng: number, radius = 2000) {
       node["amenity"~"police|hospital|fire_station|clinic"](around:${radius},${lat},${lng});
       node["railway"="station"](around:${radius},${lat},${lng});
     );
-    out body;
+    out body 10;
   `;
 }
 async function fetchSafePlaces(lat: number, lng: number) {
@@ -240,7 +240,8 @@ export default function SafePlacesSection({
 }: {
   location?: { lat: number; lng: number };
 }) {
-  const userLocation = location ?? DEFAULT_LOCATION;
+  console.log(location)
+  const userLocation = location;
 
   const [safePlaces, setSafePlaces] = useState<SafePlace[]>([]);
   const [loading, setLoading] = useState(false);

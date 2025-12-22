@@ -14,17 +14,20 @@ export default function AddToHomeHelp() {
   return (
     <>
       {/* Trigger Button */}
+      <div className="flex justify-center">
       <button
         onClick={() => setOpen(true)}
-        className="flex items-center gap-2 px-3 py-2 rounded-lg bg-secondary/40 hover:bg-secondary/60 transition text-sm"
+        className="flex items-center  gap-2 px-3 py-2 rounded-lg bg-secondary/40 hover:bg-secondary/60 transition text-sm"
       >
         <PlusSquare className="w-4 h-4" />
         Add to Home Screen
       </button>
 
+      </div>
+
       {/* Popup */}
       {open && (
-        <div className="fixed inset-0 z-50 flex items-end justify-center p-4">
+        <div className="fixed inset-0 z-[1000] flex items-end justify-center p-4">
           {/* Backdrop */}
           <div
             className="absolute inset-0 bg-black/40 backdrop-blur-sm"
