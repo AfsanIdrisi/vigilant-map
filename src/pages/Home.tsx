@@ -62,10 +62,10 @@ export default function Home() {
     label: string;
     icon: LucideIcon;
   }[] = [
+    { id: 'emergency', label: 'SOS', icon: Siren },
       { id: 'map', label: 'Risk Map', icon: Map },
       // { id: 'threats', label: 'Insights', icon: ShieldAlert },
       { id: 'routes', label: 'Routes', icon: Clock10 },
-      { id: 'emergency', label: 'SOS', icon: Siren },
       { id: 'places', label: 'Safe Places', icon: MapPinHouse },
     ];
 

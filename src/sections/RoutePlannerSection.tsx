@@ -491,7 +491,7 @@ export default function RoutePlannerSection() {
             <div className="grid grid-cols-3 text-center mb-3">
               <div>
                 <Clock className="mx-auto w-4 h-4" />
-                {r.estimatedTime * 1.3} min (Estimate)
+                {(r.estimatedTime * 1.3).toFixed(2)} min (Estimate)
               </div>
               <div>
                 <RouteIcon className="mx-auto w-4 h-4" />
