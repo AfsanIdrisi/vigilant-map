@@ -1,74 +1,51 @@
 [
-  {
-    "id": "sp-001",
-    "name": "Midtown South Precinct",
-    "lat": 40.7527,
-    "lng": -73.9878,
-    "category": "police",
-    "address": "357 W 35th St, New York, NY",
-    "phone": "+1-212-239-9811"
-  },
-  {
-    "id": "sp-002",
-    "name": "Bellevue Hospital Center",
-    "lat": 40.7390,
-    "lng": -73.9750,
-    "category": "hospital",
-    "address": "462 1st Avenue, New York, NY",
-    "phone": "+1-212-562-4141"
-  },
-  {
-    "id": "sp-003",
-    "name": "FDNY Engine 1/Ladder 24",
-    "lat": 40.7505,
-    "lng": -73.9876,
-    "category": "fire_station",
-    "address": "142 W 31st St, New York, NY",
-    "phone": "+1-212-570-4300"
-  },
-  {
-    "id": "sp-004",
-    "name": "Grand Central Terminal",
-    "lat": 40.7527,
-    "lng": -73.9772,
-    "category": "public_building",
-    "address": "89 E 42nd St, New York, NY",
-    "phone": "+1-212-340-2583"
-  },
-  {
-    "id": "sp-005",
-    "name": "NYC Emergency Shelter",
-    "lat": 40.7480,
-    "lng": -73.9920,
-    "category": "shelter",
-    "address": "303 W 30th St, New York, NY",
-    "phone": "+1-212-533-0150"
-  },
-  {
-    "id": "sp-006",
-    "name": "Times Square Precinct",
-    "lat": 40.7589,
-    "lng": -73.9851,
-    "category": "police",
-    "address": "226 W 47th St, New York, NY",
-    "phone": "+1-212-768-8400"
-  },
-  {
-    "id": "sp-007",
-    "name": "NYU Langone Hospital",
-    "lat": 40.7421,
-    "lng": -73.9739,
-    "category": "hospital",
-    "address": "550 1st Avenue, New York, NY",
-    "phone": "+1-212-263-7300"
-  },
-  {
-    "id": "sp-008",
-    "name": "New York Public Library",
-    "lat": 40.7532,
-    "lng": -73.9822,
-    "category": "public_building",
-    "address": "476 5th Ave, New York, NY",
-    "phone": "+1-917-275-6975"
-  }
+  { "id": "sp-001", "name": "Bandra Police Station", "lat": 19.0544, "lng": 72.8407, "category": "police", "address": "Hill Road, Bandra West, Mumbai", "phone": "+91-22-2642-1234" },
+  { "id": "sp-002", "name": "Khar Police Station", "lat": 19.0694, "lng": 72.8415, "category": "police", "address": "Khar West, Mumbai", "phone": "+91-22-2648-5678" },
+  { "id": "sp-003", "name": "Andheri Police Station", "lat": 19.1197, "lng": 72.8464, "category": "police", "address": "Andheri West, Mumbai", "phone": "+91-22-2634-5566" },
+  { "id": "sp-004", "name": "Kurla Police Station", "lat": 19.0723, "lng": 72.8826, "category": "police", "address": "Kurla West, Mumbai", "phone": "+91-22-2650-3344" },
+  { "id": "sp-005", "name": "Dadar Police Station", "lat": 19.0183, "lng": 72.8436, "category": "police", "address": "Dadar West, Mumbai", "phone": "+91-22-2430-8899" },
+
+  { "id": "sp-006", "name": "Lilavati Hospital", "lat": 19.0509, "lng": 72.8295, "category": "hospital", "address": "Bandra West, Mumbai", "phone": "+91-22-2656-8000" },
+  { "id": "sp-007", "name": "Holy Family Hospital", "lat": 19.0556, "lng": 72.8349, "category": "hospital", "address": "Hill Road, Bandra West", "phone": "+91-22-3061-0500" },
+  { "id": "sp-008", "name": "Kokilaben Hospital", "lat": 19.1310, "lng": 72.8258, "category": "hospital", "address": "Andheri West, Mumbai", "phone": "+91-22-4269-6969" },
+  { "id": "sp-009", "name": "KEM Hospital", "lat": 19.0026, "lng": 72.8420, "category": "hospital", "address": "Parel, Mumbai", "phone": "+91-22-2410-7000" },
+  { "id": "sp-010", "name": "Sion Hospital", "lat": 19.0435, "lng": 72.8606, "category": "hospital", "address": "Sion, Mumbai", "phone": "+91-22-2407-6300" },
+
+  { "id": "sp-011", "name": "CSMT Railway Station", "lat": 18.9398, "lng": 72.8355, "category": "transport", "address": "Fort, Mumbai", "phone": "N/A" },
+  { "id": "sp-012", "name": "Dadar Railway Station", "lat": 19.0183, "lng": 72.8436, "category": "transport", "address": "Dadar West, Mumbai", "phone": "N/A" },
+  { "id": "sp-013", "name": "Bandra Railway Station", "lat": 19.0540, "lng": 72.8405, "category": "transport", "address": "Bandra West, Mumbai", "phone": "N/A" },
+  { "id": "sp-014", "name": "Andheri Metro Station", "lat": 19.1195, "lng": 72.8468, "category": "transport", "address": "Andheri West, Mumbai", "phone": "N/A" },
+  { "id": "sp-015", "name": "Ghatkopar Metro Station", "lat": 19.0865, "lng": 72.9081, "category": "transport", "address": "Ghatkopar East, Mumbai", "phone": "N/A" },
+
+  { "id": "sp-016", "name": "BKC Main Road Junction", "lat": 19.0669, "lng": 72.8697, "category": "safe_zone", "address": "Bandra Kurla Complex", "phone": "N/A" },
+  { "id": "sp-017", "name": "Linking Road Junction", "lat": 19.0622, "lng": 72.8356, "category": "safe_zone", "address": "Linking Road, Bandra", "phone": "N/A" },
+  { "id": "sp-018", "name": "SV Road Signal", "lat": 19.0715, "lng": 72.8442, "category": "safe_zone", "address": "SV Road, Santacruz", "phone": "N/A" },
+  { "id": "sp-019", "name": "Lokhandwala Circle", "lat": 19.1422, "lng": 72.8305, "category": "safe_zone", "address": "Lokhandwala, Andheri", "phone": "N/A" },
+  { "id": "sp-020", "name": "Powai Hiranandani Junction", "lat": 19.1176, "lng": 72.9053, "category": "safe_zone", "address": "Powai, Mumbai", "phone": "N/A" },
+
+  { "id": "sp-021", "name": "Marine Drive South", "lat": 18.9436, "lng": 72.8230, "category": "safe_zone", "address": "Marine Drive, Mumbai", "phone": "N/A" },
+  { "id": "sp-022", "name": "Worli Sea Face", "lat": 19.0189, "lng": 72.8152, "category": "safe_zone", "address": "Worli, Mumbai", "phone": "N/A" },
+  { "id": "sp-023", "name": "Lower Parel Main Road", "lat": 19.0056, "lng": 72.8304, "category": "safe_zone", "address": "Lower Parel, Mumbai", "phone": "N/A" },
+  { "id": "sp-024", "name": "Phoenix Marketcity", "lat": 19.0860, "lng": 72.8895, "category": "safe_zone", "address": "Kurla West, Mumbai", "phone": "N/A" },
+  { "id": "sp-025", "name": "High Street Phoenix", "lat": 19.0033, "lng": 72.8268, "category": "safe_zone", "address": "Lower Parel, Mumbai", "phone": "N/A" },
+
+  { "id": "sp-026", "name": "JJ Hospital", "lat": 18.9644, "lng": 72.8333, "category": "hospital", "address": "Byculla, Mumbai", "phone": "+91-22-2373-5555" },
+  { "id": "sp-027", "name": "SevenHills Hospital", "lat": 19.1034, "lng": 72.8903, "category": "hospital", "address": "Marol, Mumbai", "phone": "+91-22-6767-6767" },
+  { "id": "sp-028", "name": "Hiranandani Hospital", "lat": 19.1182, "lng": 72.9072, "category": "hospital", "address": "Powai, Mumbai", "phone": "+91-22-2576-3333" },
+
+  { "id": "sp-029", "name": "Borivali Police Station", "lat": 19.2340, "lng": 72.8467, "category": "police", "address": "Borivali West, Mumbai", "phone": "+91-22-2893-1122" },
+  { "id": "sp-030", "name": "Goregaon Police Station", "lat": 19.1657, "lng": 72.8491, "category": "police", "address": "Goregaon West, Mumbai", "phone": "+91-22-2876-5566" },
+
+  { "id": "sp-031", "name": "Kurla Station East Exit", "lat": 19.0726, "lng": 72.8832, "category": "transport", "address": "Kurla East, Mumbai", "phone": "N/A" },
+  { "id": "sp-032", "name": "Lower Parel Station", "lat": 19.0070, "lng": 72.8315, "category": "transport", "address": "Lower Parel, Mumbai", "phone": "N/A" },
+  { "id": "sp-033", "name": "Thane Station", "lat": 19.1860, "lng": 72.9750, "category": "transport", "address": "Thane West", "phone": "N/A" },
+
+  { "id": "sp-034", "name": "Mahim Police Chowky", "lat": 19.0379, "lng": 72.8401, "category": "police", "address": "Mahim West", "phone": "+91-22-2445-8899" },
+  { "id": "sp-035", "name": "Vakola Police Chowky", "lat": 19.0796, "lng": 72.8530, "category": "police", "address": "Santacruz East", "phone": "+91-22-2668-1122" },
+
+  { "id": "sp-036", "name": "Carter Road Promenade", "lat": 19.0676, "lng": 72.8227, "category": "safe_zone", "address": "Bandra West", "phone": "N/A" },
+  { "id": "sp-037", "name": "Bandra Reclamation Road", "lat": 19.0418, "lng": 72.8182, "category": "safe_zone", "address": "Bandra Reclamation", "phone": "N/A" },
+  { "id": "sp-038", "name": "Goregaon Sports Club Road", "lat": 19.1698, "lng": 72.8429, "category": "safe_zone", "address": "Goregaon West", "phone": "N/A" },
+  { "id": "sp-039", "name": "Infinity Mall Junction", "lat": 19.1402, "lng": 72.8348, "category": "safe_zone", "address": "Andheri West", "phone": "N/A" },
+  { "id": "sp-040", "name": "Powai Lake Main Road", "lat": 19.1173, "lng": 72.9045, "category": "safe_zone", "address": "Powai, Mumbai", "phone": "N/A" }
 ]

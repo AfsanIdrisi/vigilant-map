@@ -1,92 +1,121 @@
 [
-  {
-    "id": "inc-001",
-    "lat": 19.0608,
-    "lng": 72.8292,
-    "type": "theft",
-    "severity": 3,
-    "timestamp": "2024-12-21T02:30:00Z",
-    "description": "Phone snatching reported near Bandra railway station"
-  },
-  {
-    "id": "inc-002",
-    "lat": 19.0579,
-    "lng": 72.8341,
-    "type": "harassment",
-    "severity": 2,
-    "timestamp": "2024-12-21T01:15:00Z",
-    "description": "Verbal harassment reported near Linking Road"
-  },
-  {
-    "id": "inc-003",
-    "lat": 19.0596,
-    "lng": 72.8295,
-    "type": "assault",
-    "severity": 5,
-    "timestamp": "2024-12-20T23:45:00Z",
-    "description": "Physical altercation reported near Bandstand promenade"
-  },
-  {
-    "id": "inc-004",
-    "lat": 19.0621,
-    "lng": 72.8273,
-    "type": "suspicious",
-    "severity": 2,
-    "timestamp": "2024-12-21T00:20:00Z",
-    "description": "Suspicious individual following pedestrians near Carter Road"
-  },
-  {
-    "id": "inc-005",
-    "lat": 19.0583,
-    "lng": 72.8318,
-    "type": "theft",
-    "severity": 4,
-    "timestamp": "2024-12-20T22:00:00Z",
-    "description": "Mugging reported near Hill Road shopping area"
-  },
-  {
-    "id": "inc-006",
-    "lat": 19.0614,
-    "lng": 72.8259,
-    "type": "vandalism",
-    "severity": 1,
-    "timestamp": "2024-12-20T21:30:00Z",
-    "description": "Parked vehicle damaged near Bandstand parking zone"
-  },
-  {
-    "id": "inc-007",
-    "lat": 19.0557,
-    "lng": 72.8336,
-    "type": "accident",
-    "severity": 3,
-    "timestamp": "2024-12-21T03:00:00Z",
-    "description": "Hit-and-run reported near SV Road junction"
-  },
-  {
-    "id": "inc-008",
-    "lat": 19.0632,
-    "lng": 72.8287,
-    "type": "harassment",
-    "severity": 3,
-    "timestamp": "2024-12-20T20:15:00Z",
-    "description": "Group harassment reported near seaside jogging track"
-  },
-  {
-    "id": "inc-009",
-    "lat": 19.0569,
-    "lng": 72.8309,
-    "type": "theft",
-    "severity": 2,
-    "timestamp": "2024-12-21T01:45:00Z",
-    "description": "Pickpocketing reported in crowded market area"
-  },
-  {
-    "id": "inc-010",
-    "lat": 19.0601,
-    "lng": 72.8349,
-    "type": "suspicious",
-    "severity": 3,
-    "timestamp": "2024-12-20T23:00:00Z",
-    "description": "Suspicious unattended bag reported near bus stop"
-  }
-]
+  { "id": "inc-001", "lat": 19.0760, "lng": 72.8777, "type": "robbery", "severity": 3, "timestamp": "2025-02-20T21:10:00Z", "description": "Mobile phone snatched near CST railway station" },
+  { "id": "inc-002", "lat": 19.0458, "lng": 72.8205, "type": "assault", "severity": 3, "timestamp": "2025-02-20T22:05:00Z", "description": "Man assaulted during dispute near Bandra Kurla Complex" },
+  { "id": "inc-003", "lat": 19.0176, "lng": 72.8562, "type": "murder", "severity": 5, "timestamp": "2025-02-20T03:40:00Z", "description": "Fatal stabbing reported in Dadar East residential area" },
+  { "id": "inc-004", "lat": 19.0330, "lng": 72.8350, "type": "robbery", "severity": 3, "timestamp": "2025-02-19T20:15:00Z", "description": "Chain snatching incident near Mahim West" },
+  { "id": "inc-005", "lat": 19.0600, "lng": 72.8300, "type": "assault", "severity": 3, "timestamp": "2025-02-19T23:10:00Z", "description": "Two individuals injured in street fight near Bandra station" },
+  { "id": "inc-006", "lat": 19.0960, "lng": 72.8740, "type": "rape", "severity": 5, "timestamp": "2025-02-19T01:55:00Z", "description": "Sexual assault investigation initiated near Girgaon Chowpatty" },
+  { "id": "inc-007", "lat": 19.0830, "lng": 72.9000, "type": "robbery", "severity": 3, "timestamp": "2025-02-18T21:40:00Z", "description": "Bag snatched from commuter near Kurla station" },
+  { "id": "inc-008", "lat": 19.1334, "lng": 72.9071, "type": "assault", "severity": 3, "timestamp": "2025-02-18T22:25:00Z", "description": "Security guard assaulted outside mall in Kurla West" },
+  { "id": "inc-009", "lat": 19.1096, "lng": 72.8354, "type": "murder", "severity": 5, "timestamp": "2025-02-18T04:05:00Z", "description": "Homicide reported near Borivali West slum area" },
+  { "id": "inc-010", "lat": 19.0605, "lng": 72.8260, "type": "robbery", "severity": 3, "timestamp": "2025-02-17T19:30:00Z", "description": "Purse snatching near Hill Road shopping area" },
+
+  { "id": "inc-011", "lat": 19.2183, "lng": 72.9781, "type": "kidnapping", "severity": 4, "timestamp": "2025-02-17T18:10:00Z", "description": "Minor reported missing from Thane West residential society" },
+  { "id": "inc-012", "lat": 19.0544, "lng": 72.8407, "type": "robbery", "severity": 3, "timestamp": "2025-02-17T21:55:00Z", "description": "Wallet stolen near Dadar TT Circle" },
+  { "id": "inc-013", "lat": 19.0728, "lng": 72.8826, "type": "assault", "severity": 3, "timestamp": "2025-02-16T22:35:00Z", "description": "Assault reported near Fort business district" },
+  { "id": "inc-014", "lat": 19.0375, "lng": 72.8680, "type": "kidnapping", "severity": 4, "timestamp": "2025-02-16T17:45:00Z", "description": "Missing person case filed in Matunga East" },
+  { "id": "inc-015", "lat": 19.0900, "lng": 72.8350, "type": "murder", "severity": 5, "timestamp": "2025-02-16T03:15:00Z", "description": "Fatal assault reported near Andheri station" },
+
+  { "id": "inc-016", "lat": 19.1225, "lng": 72.8390, "type": "robbery", "severity": 3, "timestamp": "2025-02-15T20:20:00Z", "description": "Robbery reported near Kandivali East market" },
+  { "id": "inc-017", "lat": 19.1685, "lng": 72.9560, "type": "assault", "severity": 3, "timestamp": "2025-02-15T23:30:00Z", "description": "Man beaten during late-night altercation in Mulund West" },
+  { "id": "inc-018", "lat": 19.0978, "lng": 72.8630, "type": "robbery", "severity": 3, "timestamp": "2025-02-15T21:05:00Z", "description": "Bag snatching incident near Ghatkopar station" },
+  { "id": "inc-019", "lat": 19.1100, "lng": 72.8500, "type": "rape", "severity": 5, "timestamp": "2025-02-15T02:10:00Z", "description": "Sexual assault under investigation at Jogeshwari East" },
+  { "id": "inc-020", "lat": 19.0515, "lng": 72.8400, "type": "assault", "severity": 3, "timestamp": "2025-02-14T22:45:00Z", "description": "Group assault reported near Mahim beach road" },
+
+  { "id": "inc-021", "lat": 19.0720, "lng": 72.8500, "type": "robbery", "severity": 3, "timestamp": "2025-02-14T21:20:00Z", "description": "Snatching incident near Shivaji Park entrance" },
+  { "id": "inc-022", "lat": 19.1300, "lng": 72.8400, "type": "robbery", "severity": 3, "timestamp": "2025-02-14T20:05:00Z", "description": "Robbery reported near Borivali East station road" },
+  { "id": "inc-023", "lat": 19.0950, "lng": 72.8500, "type": "murder", "severity": 5, "timestamp": "2025-02-14T03:30:00Z", "description": "Fatal stabbing outside Andheri West metro station" },
+  { "id": "inc-024", "lat": 19.0840, "lng": 72.8901, "type": "kidnapping", "severity": 4, "timestamp": "2025-02-13T18:00:00Z", "description": "Adolescent reported missing near Khar Road" },
+  { "id": "inc-025", "lat": 19.0383, "lng": 72.8950, "type": "robbery", "severity": 3, "timestamp": "2025-02-13T19:40:00Z", "description": "Robbery reported near Lower Mahim Road" },
+
+  
+  { "id": "inc-026", "lat": 19.0339, "lng": 72.8606, "type": "assault", "severity": 3, "timestamp": "2025-02-13T22:10:00Z", "description": "Man assaulted near Sion railway colony" },
+  { "id": "inc-027", "lat": 19.0685, "lng": 72.8364, "type": "robbery", "severity": 3, "timestamp": "2025-02-12T21:35:00Z", "description": "Mobile snatching incident near Khar West market" },
+  { "id": "inc-028", "lat": 19.1487, "lng": 72.8342, "type": "assault", "severity": 3, "timestamp": "2025-02-12T23:20:00Z", "description": "Assault reported near Kandarpada road" },
+  { "id": "inc-029", "lat": 19.2294, "lng": 72.8566, "type": "robbery", "severity": 3, "timestamp": "2025-02-12T20:15:00Z", "description": "Chain snatching reported near Dahisar East" },
+  { "id": "inc-030", "lat": 19.2025, "lng": 72.8661, "type": "kidnapping", "severity": 4, "timestamp": "2025-02-12T18:40:00Z", "description": "Minor reported missing near Malad East residential area" },
+
+  { "id": "inc-031", "lat": 19.1850, "lng": 72.8585, "type": "robbery", "severity": 3, "timestamp": "2025-02-11T21:55:00Z", "description": "Wallet stolen near Goregaon West station" },
+  { "id": "inc-032", "lat": 19.1662, "lng": 72.8439, "type": "assault", "severity": 3, "timestamp": "2025-02-11T22:50:00Z", "description": "Altercation escalated into assault near Jogeshwari West" },
+  { "id": "inc-033", "lat": 19.1002, "lng": 72.8815, "type": "robbery", "severity": 3, "timestamp": "2025-02-11T20:05:00Z", "description": "Bag snatched near Chembur railway station" },
+  { "id": "inc-034", "lat": 19.0924, "lng": 72.8481, "type": "assault", "severity": 3, "timestamp": "2025-02-11T23:45:00Z", "description": "Security guard assaulted near Andheri MIDC area" },
+  { "id": "inc-035", "lat": 19.0748, "lng": 72.9075, "type": "robbery", "severity": 3, "timestamp": "2025-02-10T21:15:00Z", "description": "Snatching incident near Govandi bus depot" },
+
+  { "id": "inc-036", "lat": 19.2537, "lng": 72.8591, "type": "rape", "severity": 5, "timestamp": "2025-02-10T02:20:00Z", "description": "Sexual assault investigation initiated in Mira Road East" },
+  { "id": "inc-037", "lat": 19.1775, "lng": 72.8732, "type": "assault", "severity": 3, "timestamp": "2025-02-10T22:35:00Z", "description": "Man beaten during dispute near Goregaon East" },
+  { "id": "inc-038", "lat": 19.0608, "lng": 72.9023, "type": "robbery", "severity": 3, "timestamp": "2025-02-09T20:40:00Z", "description": "Purse snatching near Wadala station road" },
+  { "id": "inc-039", "lat": 19.0206, "lng": 72.8422, "type": "assault", "severity": 3, "timestamp": "2025-02-09T23:10:00Z", "description": "Late-night assault reported near Parel mill area" },
+  { "id": "inc-040", "lat": 19.1115, "lng": 72.8667, "type": "robbery", "severity": 3, "timestamp": "2025-02-09T21:05:00Z", "description": "Chain snatching incident near Powai lake road" },
+
+  { "id": "inc-041", "lat": 19.2351, "lng": 72.8447, "type": "assault", "severity": 3, "timestamp": "2025-02-08T22:50:00Z", "description": "Assault reported near Borivali West market area" },
+  { "id": "inc-042", "lat": 19.2670, "lng": 72.8793, "type": "kidnapping", "severity": 4, "timestamp": "2025-02-08T18:25:00Z", "description": "Teenager reported missing near Bhayandar East" },
+  { "id": "inc-043", "lat": 19.1968, "lng": 72.8381, "type": "robbery", "severity": 3, "timestamp": "2025-02-08T20:10:00Z", "description": "Robbery near Malad West Link Road" },
+  { "id": "inc-044", "lat": 19.0721, "lng": 72.8930, "type": "assault", "severity": 3, "timestamp": "2025-02-08T23:30:00Z", "description": "Fight broke out near Cotton Green locality" },
+  { "id": "inc-045", "lat": 19.1513, "lng": 72.8726, "type": "robbery", "severity": 3, "timestamp": "2025-02-07T21:40:00Z", "description": "Mobile phone stolen near Kandivali West signal" },
+
+  { "id": "inc-046", "lat": 19.0896, "lng": 72.8651, "type": "assault", "severity": 3, "timestamp": "2025-02-07T22:55:00Z", "description": "Assault reported near Andheri East metro exit" },
+  { "id": "inc-047", "lat": 19.2426, "lng": 72.8610, "type": "robbery", "severity": 3, "timestamp": "2025-02-07T20:15:00Z", "description": "Snatching reported near Borivali East service road" },
+  { "id": "inc-048", "lat": 19.1709, "lng": 72.8798, "type": "assault", "severity": 3, "timestamp": "2025-02-06T23:05:00Z", "description": "Late-night assault near Goregaon flyover" },
+  { "id": "inc-049", "lat": 19.2101, "lng": 72.8484, "type": "robbery", "severity": 3, "timestamp": "2025-02-06T21:10:00Z", "description": "Bag snatched near Malad Link Road" },
+  { "id": "inc-050", "lat": 19.1406, "lng": 72.8589, "type": "assault", "severity": 3, "timestamp": "2025-02-06T22:30:00Z", "description": "Man assaulted near Oshiwara junction" },
+
+  { "id": "inc-051", "lat": 19.2732, "lng": 72.8829, "type": "rape", "severity": 5, "timestamp": "2025-02-06T01:40:00Z", "description": "Sexual assault case reported in Vasai East outskirts" },
+  { "id": "inc-052", "lat": 19.0612, "lng": 72.8554, "type": "robbery", "severity": 3, "timestamp": "2025-02-05T20:20:00Z", "description": "Robbery reported near Sewri station road" },
+  { "id": "inc-053", "lat": 19.0849, "lng": 72.8408, "type": "assault", "severity": 3, "timestamp": "2025-02-05T23:15:00Z", "description": "Assault reported near DN Nagar metro area" },
+  { "id": "inc-054", "lat": 19.1931, "lng": 72.8609, "type": "robbery", "severity": 3, "timestamp": "2025-02-05T21:35:00Z", "description": "Snatching incident near Goregaon West station" },
+  { "id": "inc-055", "lat": 19.1579, "lng": 72.8482, "type": "assault", "severity": 3, "timestamp": "2025-02-05T22:50:00Z", "description": "Street assault reported near Jogeshwari Link Road" },
+
+  { "id": "inc-056", "lat": 19.2489, "lng": 72.8753, "type": "kidnapping", "severity": 4, "timestamp": "2025-02-04T18:30:00Z", "description": "Child reported missing near Mira Road West" },
+  { "id": "inc-057", "lat": 19.0318, "lng": 72.8579, "type": "robbery", "severity": 3, "timestamp": "2025-02-04T20:45:00Z", "description": "Purse snatched near Sion Circle" },
+  { "id": "inc-058", "lat": 19.1204, "lng": 72.8621, "type": "assault", "severity": 3, "timestamp": "2025-02-04T23:10:00Z", "description": "Man assaulted near JVLR road intersection" },
+  { "id": "inc-059", "lat": 19.2007, "lng": 72.8409, "type": "robbery", "severity": 3, "timestamp": "2025-02-04T21:25:00Z", "description": "Robbery reported near Malad West bus stop" },
+  { "id": "inc-060", "lat": 19.0872, "lng": 72.8894, "type": "assault", "severity": 3, "timestamp": "2025-02-04T22:40:00Z", "description": "Assault reported near Tilak Nagar railway line" },
+
+  { "id": "inc-061", "lat": 19.2659, "lng": 72.8564, "type": "robbery", "severity": 3, "timestamp": "2025-02-03T20:10:00Z", "description": "Chain snatching reported near Kandarpada bridge" },
+  { "id": "inc-062", "lat": 19.1742, "lng": 72.8675, "type": "assault", "severity": 3, "timestamp": "2025-02-03T23:05:00Z", "description": "Man assaulted near Ram Mandir railway station" },
+  { "id": "inc-063", "lat": 19.0446, "lng": 72.8603, "type": "robbery", "severity": 3, "timestamp": "2025-02-03T21:15:00Z", "description": "Bag snatched near Matunga road station" },
+  { "id": "inc-064", "lat": 19.2128, "lng": 72.8487, "type": "assault", "severity": 3, "timestamp": "2025-02-03T22:35:00Z", "description": "Assault reported near Malad West residential area" },
+  { "id": "inc-065", "lat": 19.1017, "lng": 72.8568, "type": "robbery", "severity": 3, "timestamp": "2025-02-03T20:50:00Z", "description": "Robbery reported near Powai Hiranandani gate" },
+
+  { "id": "inc-066", "lat": 19.2856, "lng": 72.8709, "type": "rape", "severity": 5, "timestamp": "2025-02-03T02:05:00Z", "description": "Sexual assault investigation reported near Naigaon East" },
+  { "id": "inc-067", "lat": 19.0581, "lng": 72.8472, "type": "assault", "severity": 3, "timestamp": "2025-02-02T23:20:00Z", "description": "Late-night assault reported near Parel workshop area" },
+  { "id": "inc-068", "lat": 19.1465, "lng": 72.8649, "type": "robbery", "severity": 3, "timestamp": "2025-02-02T21:35:00Z", "description": "Mobile stolen near Andheri West subway" },
+  { "id": "inc-069", "lat": 19.2324, "lng": 72.8441, "type": "assault", "severity": 3, "timestamp": "2025-02-02T22:50:00Z", "description": "Assault reported near Borivali Link Road junction" },
+  { "id": "inc-070", "lat": 19.0913, "lng": 72.8758, "type": "robbery", "severity": 3, "timestamp": "2025-02-02T20:10:00Z", "description": "Snatching incident near Ghatkopar West market" },
+
+  { "id": "inc-071", "lat": 19.2604, "lng": 72.8796, "type": "kidnapping", "severity": 4, "timestamp": "2025-02-01T18:15:00Z", "description": "Minor reported missing near Mira Road railway station" },
+  { "id": "inc-072", "lat": 19.0679, "lng": 72.8423, "type": "robbery", "severity": 3, "timestamp": "2025-02-01T21:20:00Z", "description": "Wallet snatched near Khar subway" },
+  { "id": "inc-073", "lat": 19.1826, "lng": 72.8617, "type": "assault", "severity": 3, "timestamp": "2025-02-01T23:05:00Z", "description": "Man assaulted near Goregaon Jogeshwari Link Road" },
+  { "id": "inc-074", "lat": 19.2408, "lng": 72.8516, "type": "robbery", "severity": 3, "timestamp": "2025-02-01T20:25:00Z", "description": "Robbery reported near Borivali East highway exit" },
+  { "id": "inc-075", "lat": 19.1153, "lng": 72.8791, "type": "assault", "severity": 3, "timestamp": "2025-02-01T22:40:00Z", "description": "Street assault reported near Powai IIT gate" },
+
+  { "id": "inc-076", "lat": 19.0519, "lng": 72.8694, "type": "robbery", "severity": 3, "timestamp": "2025-01-31T21:10:00Z", "description": "Bag snatched near Matunga Five Gardens" },
+  { "id": "inc-077", "lat": 19.1339, "lng": 72.8628, "type": "assault", "severity": 3, "timestamp": "2025-01-31T23:00:00Z", "description": "Man assaulted near Andheri West Lokhandwala" },
+  { "id": "inc-078", "lat": 19.2708, "lng": 72.8735, "type": "robbery", "severity": 3, "timestamp": "2025-01-31T20:15:00Z", "description": "Snatching reported near Vasai Road station" },
+  { "id": "inc-079", "lat": 19.1984, "lng": 72.8597, "type": "assault", "severity": 3, "timestamp": "2025-01-31T22:35:00Z", "description": "Assault reported near Malad West commercial lane" },
+  { "id": "inc-080", "lat": 19.0929, "lng": 72.8573, "type": "robbery", "severity": 3, "timestamp": "2025-01-31T21:45:00Z", "description": "Robbery reported near Andheri East MIDC Road" },
+
+  { "id": "inc-081", "lat": 19.2891, "lng": 72.8726, "type": "rape", "severity": 5, "timestamp": "2025-01-31T01:30:00Z", "description": "Sexual assault case registered near Virar East outskirts" },
+  { "id": "inc-082", "lat": 19.0735, "lng": 72.8898, "type": "assault", "severity": 3, "timestamp": "2025-01-30T23:10:00Z", "description": "Assault reported near Chembur colony road" },
+  { "id": "inc-083", "lat": 19.1658, "lng": 72.8539, "type": "robbery", "severity": 3, "timestamp": "2025-01-30T21:20:00Z", "description": "Snatching incident near Goregaon West market" },
+  { "id": "inc-084", "lat": 19.2073, "lng": 72.8664, "type": "assault", "severity": 3, "timestamp": "2025-01-30T22:45:00Z", "description": "Assault reported near Malad East service road" },
+  { "id": "inc-085", "lat": 19.1147, "lng": 72.8429, "type": "robbery", "severity": 3, "timestamp": "2025-01-30T20:30:00Z", "description": "Mobile phone snatched near Jogeshwari station" },
+
+  { "id": "inc-086", "lat": 19.2584, "lng": 72.8781, "type": "kidnapping", "severity": 4, "timestamp": "2025-01-29T18:20:00Z", "description": "Missing child reported near Mira Road West" },
+  { "id": "inc-087", "lat": 19.0472, "lng": 72.8618, "type": "robbery", "severity": 3, "timestamp": "2025-01-29T21:10:00Z", "description": "Purse stolen near Dadar East station road" },
+  { "id": "inc-088", "lat": 19.1365, "lng": 72.8702, "type": "assault", "severity": 3, "timestamp": "2025-01-29T22:55:00Z", "description": "Assault reported near Andheri West market lane" },
+  { "id": "inc-089", "lat": 19.1957, "lng": 72.8531, "type": "robbery", "severity": 3, "timestamp": "2025-01-29T20:40:00Z", "description": "Snatching incident near Malad West station road" },
+  { "id": "inc-090", "lat": 19.0891, "lng": 72.8816, "type": "assault", "severity": 3, "timestamp": "2025-01-29T23:15:00Z", "description": "Late-night assault reported near Ghatkopar East" },
+
+  { "id": "inc-091", "lat": 19.2754, "lng": 72.8837, "type": "robbery", "severity": 3, "timestamp": "2025-01-28T21:05:00Z", "description": "Robbery reported near Nalasopara West market" },
+  { "id": "inc-092", "lat": 19.0643, "lng": 72.8476, "type": "assault", "severity": 3, "timestamp": "2025-01-28T23:25:00Z", "description": "Assault reported near Prabhadevi station area" },
+  { "id": "inc-093", "lat": 19.1524, "lng": 72.8575, "type": "robbery", "severity": 3, "timestamp": "2025-01-28T20:15:00Z", "description": "Bag snatched near Kandivali West signal" },
+  { "id": "inc-094", "lat": 19.2246, "lng": 72.8492, "type": "assault", "severity": 3, "timestamp": "2025-01-28T22:40:00Z", "description": "Man assaulted near Borivali Link Road junction" },
+  { "id": "inc-095", "lat": 19.0987, "lng": 72.8658, "type": "robbery", "severity": 3, "timestamp": "2025-01-28T21:30:00Z", "description": "Robbery reported near Powai Plaza bus stop" },
+
+  { "id": "inc-096", "lat": 19.2841, "lng": 72.8862, "type": "rape", "severity": 5, "timestamp": "2025-01-28T02:10:00Z", "description": "Sexual assault case registered near Virar West outskirts" },
+  { "id": "inc-097", "lat": 19.0568, "lng": 72.8612, "type": "assault", "severity": 3, "timestamp": "2025-01-27T23:05:00Z", "description": "Assault reported near Lower Parel station road" },
+  { "id": "inc-098", "lat": 19.1419, "lng": 72.8673, "type": "robbery", "severity": 3, "timestamp": "2025-01-27T21:20:00Z", "description": "Mobile snatching incident near Andheri West subway" },
+  { "id": "inc-099", "lat": 19.1998, "lng": 72.8614, "type": "assault", "severity": 3, "timestamp": "2025-01-27T22:50:00Z", "description": "Assault reported near Malad East residential lane" },
+  { "id": "inc-100", "lat": 19.1025, "lng": 72.8589, "type": "robbery", "severity": 3, "timestamp": "2025-01-27T20:35:00Z", "description": "Snatching incident near Powai JVLR junction" }
+  ]

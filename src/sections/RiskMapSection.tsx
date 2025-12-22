@@ -12,7 +12,7 @@
 // export default function RiskMapSection() {
 //   const riskZones = useMemo(() => generateRiskZones(incidents), []);
 //   const areaRisk = useMemo(() => calculateLocationRisk(DEFAULT_CENTER.lat, DEFAULT_CENTER.lng, incidents), []);
-  
+
 //   const areaRating = getAreaRating(areaRisk);
 //   const riskLevel = getRiskLevel(areaRisk);
 
@@ -126,7 +126,7 @@
 //                 {riskLevel}
 //               </span>
 //             </div>
-            
+
 //             <div className="flex items-center gap-1 mb-2">
 //               {[1, 2, 3, 4, 5].map((star) => (
 //                 <span
@@ -140,7 +140,7 @@
 //                 Safety Rating
 //               </span>
 //             </div>
-            
+
 //             <p className="text-sm text-muted-foreground">
 //               {incidents.length} incidents tracked • {riskZones.length} risk zones
 //             </p>
@@ -203,7 +203,7 @@
 
 import { useMemo } from "react";
 import { Shield, MapPin, AlertTriangle } from "lucide-react";
-import { MapContainer, TileLayer, Circle, Marker, Popup } from "react-leaflet";
+import { MapContainer, TileLayer, Circle, Marker, Popup, CircleMarker } from "react-leaflet";
 import L from "leaflet";
 
 import "leaflet/dist/leaflet.css"; // 🔥 REQUIRED
@@ -230,6 +230,36 @@ L.Icon.Default.mergeOptions({
     "https://unpkg.com/leaflet@1.9.4/dist/images/marker-shadow.png",
 });
 
+// Distance in KM between two lat/lng points
+export function calculateDistance(
+  lat1: number,
+  lng1: number,
+  lat2: number,
+  lng2: number
+): number {
+  console.log(lat1, lng1, lat2, lng2);
+  const R = 6371; // Earth radius in KM
+
+  const dLat = degToRad(lat2 - lat1);
+  const dLng = degToRad(lng2 - lng1);
+
+  const a =
+    Math.sin(dLat / 2) * Math.sin(dLat / 2) +
+    Math.cos(degToRad(lat1)) *
+    Math.cos(degToRad(lat2)) *
+    Math.sin(dLng / 2) *
+    Math.sin(dLng / 2);
+
+  const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+
+  return R * c; // distance in KM
+}
+
+function degToRad(deg: number): number {
+  return deg * (Math.PI / 180);
+}
+
+
 /* ============================
    BANDRA CENTER
 ============================ */
@@ -238,6 +268,7 @@ const DEFAULT_CENTER = {
   lng: 72.8295,
 };
 
+const INCIDENT_RADIUS_KM = 2.5; // 5 meters
 const incidents: Incident[] = incidentsData as Incident[];
 
 export default function RiskMapSection() {
@@ -275,6 +306,18 @@ export default function RiskMapSection() {
             attribution="© OpenStreetMap contributors"
             url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
           />
+          <CircleMarker
+            center={[19.0596, 72.8295]}
+            radius={10}
+            pathOptions={{
+              color: "blue",
+              fillColor: "blue",
+              fillOpacity: 1,
+            }}
+          >
+            <Popup>Test pin</Popup>
+          </CircleMarker>
+
 
           {/* RISK ZONES */}
           {riskZones.map((zone, index) => (
@@ -287,35 +330,54 @@ export default function RiskMapSection() {
                   zone.level === "critical"
                     ? "#dc2626"
                     : zone.level === "high"
-                    ? "#f97316"
-                    : zone.level === "medium"
-                    ? "#eab308"
-                    : "#16a34a",
+                      ? "#f97316"
+                      : zone.level === "medium"
+                        ? "#eab308"
+                        : "#16a34a",
                 fillOpacity: 0.3,
               }}
             />
           ))}
 
           {/* INCIDENT MARKERS */}
-          {console.log(incidents)}
-          {incidents.map((incident) => (
-            <Marker
-              key={incident.id}
-              position={[incident.lat, incident.lng]}
-            >
-              <Popup>
-                <div className="space-y-1">
-                  <div className="font-semibold capitalize">
-                    {incident.type}
+          const INCIDENT_RADIUS_KM = 0.005; // 5 meters
+{console.log(incidents
+            .filter((incident) =>
+              calculateDistance(
+                DEFAULT_CENTER.lat,
+                DEFAULT_CENTER.lng,
+                incident.lat,
+                incident.lng
+              ) <= INCIDENT_RADIUS_KM
+            ))}
+          {incidents
+            .filter((incident) =>
+              calculateDistance(
+                DEFAULT_CENTER.lat,
+                DEFAULT_CENTER.lng,
+                incident.lat,
+                incident.lng
+              ) <= INCIDENT_RADIUS_KM
+            )
+            .map((incident) => (
+              <Marker
+                key={incident.id}
+                position={[incident.lat, incident.lng]}
+              >
+                <Popup>
+                  <div className="space-y-1">
+                    <div className="font-semibold capitalize">
+                      {incident.type}
+                    </div>
+                    <div>Severity: {incident.severity}</div>
+                    <div className="text-xs text-muted-foreground">
+                      {incident.description}
+                    </div>
                   </div>
-                  <div>Severity: {incident.severity}</div>
-                  <div className="text-xs text-muted-foreground">
-                    {incident.description}
-                  </div>
-                </div>
-              </Popup>
-            </Marker>
-          ))}
+                </Popup>
+              </Marker>
+            ))}
+
         </MapContainer>
       </div>
 
