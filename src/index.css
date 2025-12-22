@@ -1,0 +1,220 @@
+@import 'leaflet/dist/leaflet.css';
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=Inter:wght@400;500;600;700;800&display=swap');
+
+@layer base {
+  :root {
+    /* Dark safety-focused theme */
+    --background: 222 47% 8%;
+    --foreground: 210 40% 96%;
+
+    --card: 222 47% 11%;
+    --card-foreground: 210 40% 96%;
+
+    --popover: 222 47% 11%;
+    --popover-foreground: 210 40% 96%;
+
+    --primary: 217 91% 60%;
+    --primary-foreground: 222 47% 8%;
+
+    --secondary: 222 47% 16%;
+    --secondary-foreground: 210 40% 96%;
+
+    --muted: 222 47% 14%;
+    --muted-foreground: 215 20% 55%;
+
+    --accent: 222 47% 18%;
+    --accent-foreground: 210 40% 96%;
+
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 210 40% 98%;
+
+    --border: 222 47% 18%;
+    --input: 222 47% 18%;
+    --ring: 217 91% 60%;
+
+    --radius: 0.75rem;
+
+    /* Risk level colors */
+    --risk-critical: 0 84% 60%;
+    --risk-high: 25 95% 53%;
+    --risk-medium: 45 93% 47%;
+    --risk-low: 142 71% 45%;
+    --risk-safe: 152 76% 36%;
+
+    /* Status colors */
+    --status-online: 142 71% 45%;
+    --status-warning: 45 93% 47%;
+    --status-danger: 0 84% 60%;
+
+    /* Map overlay */
+    --map-overlay: 222 47% 8% / 0.85;
+
+    /* Gradients */
+    --gradient-danger: linear-gradient(135deg, hsl(0 84% 60%), hsl(25 95% 53%));
+    --gradient-safe: linear-gradient(135deg, hsl(152 76% 36%), hsl(142 71% 45%));
+    --gradient-primary: linear-gradient(135deg, hsl(217 91% 60%), hsl(199 89% 48%));
+
+    /* Shadows */
+    --shadow-glow-danger: 0 0 30px hsl(0 84% 60% / 0.4);
+    --shadow-glow-safe: 0 0 30px hsl(142 71% 45% / 0.3);
+    --shadow-glow-primary: 0 0 30px hsl(217 91% 60% / 0.3);
+
+    --sidebar-background: 222 47% 8%;
+    --sidebar-foreground: 210 40% 96%;
+    --sidebar-primary: 217 91% 60%;
+    --sidebar-primary-foreground: 222 47% 8%;
+    --sidebar-accent: 222 47% 16%;
+    --sidebar-accent-foreground: 210 40% 96%;
+    --sidebar-border: 222 47% 18%;
+    --sidebar-ring: 217 91% 60%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground font-sans antialiased;
+    font-family: 'Inter', system-ui, sans-serif;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-bold tracking-tight;
+  }
+
+  code, .font-mono {
+    font-family: 'JetBrains Mono', monospace;
+  }
+}
+
+@layer components {
+  .risk-badge {
+    @apply inline-flex items-center px-2.5 py-1 rounded-full text-xs font-semibold uppercase tracking-wide;
+  }
+
+  .risk-badge-critical {
+    @apply bg-risk-critical/20 text-risk-critical border border-risk-critical/30;
+  }
+
+  .risk-badge-high {
+    @apply bg-risk-high/20 text-risk-high border border-risk-high/30;
+  }
+
+  .risk-badge-medium {
+    @apply bg-risk-medium/20 text-risk-medium border border-risk-medium/30;
+  }
+
+  .risk-badge-low {
+    @apply bg-risk-low/20 text-risk-low border border-risk-low/30;
+  }
+
+  .risk-badge-safe {
+    @apply bg-risk-safe/20 text-risk-safe border border-risk-safe/30;
+  }
+
+  .glass-panel {
+    @apply bg-card/80 backdrop-blur-xl border border-border/50 rounded-xl;
+  }
+
+  .map-container {
+    @apply w-full h-full rounded-xl overflow-hidden;
+  }
+
+  .pulse-danger {
+    animation: pulse-danger 2s infinite;
+  }
+
+  .pulse-safe {
+    animation: pulse-safe 3s infinite;
+  }
+}
+
+@layer utilities {
+  .text-gradient-danger {
+    @apply bg-clip-text text-transparent;
+    background-image: var(--gradient-danger);
+  }
+
+  .text-gradient-safe {
+    @apply bg-clip-text text-transparent;
+    background-image: var(--gradient-safe);
+  }
+
+  .text-gradient-primary {
+    @apply bg-clip-text text-transparent;
+    background-image: var(--gradient-primary);
+  }
+
+  .shadow-glow-danger {
+    box-shadow: var(--shadow-glow-danger);
+  }
+
+  .shadow-glow-safe {
+    box-shadow: var(--shadow-glow-safe);
+  }
+
+  .shadow-glow-primary {
+    box-shadow: var(--shadow-glow-primary);
+  }
+}
+
+@keyframes pulse-danger {
+  0%, 100% {
+    box-shadow: 0 0 0 0 hsl(0 84% 60% / 0.7);
+  }
+  50% {
+    box-shadow: 0 0 0 20px hsl(0 84% 60% / 0);
+  }
+}
+
+@keyframes pulse-safe {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.7;
+  }
+}
+
+/* Leaflet overrides */
+.leaflet-container {
+  background: hsl(222 47% 8%) !important;
+  font-family: 'Inter', system-ui, sans-serif !important;
+}
+
+.leaflet-control-zoom {
+  border: none !important;
+  box-shadow: 0 4px 20px hsl(0 0% 0% / 0.3) !important;
+}
+
+.leaflet-control-zoom a {
+  background: hsl(222 47% 14%) !important;
+  color: hsl(210 40% 96%) !important;
+  border: 1px solid hsl(222 47% 22%) !important;
+}
+
+.leaflet-control-zoom a:hover {
+  background: hsl(222 47% 18%) !important;
+}
+
+.leaflet-popup-content-wrapper {
+  background: hsl(222 47% 11%) !important;
+  color: hsl(210 40% 96%) !important;
+  border-radius: 12px !important;
+  box-shadow: 0 10px 40px hsl(0 0% 0% / 0.5) !important;
+}
+
+.leaflet-popup-tip {
+  background: hsl(222 47% 11%) !important;
+}
+
+.leaflet-popup-close-button {
+  color: hsl(210 40% 96%) !important;
+}

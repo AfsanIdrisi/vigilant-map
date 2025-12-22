@@ -1,0 +1,74 @@
+[
+  {
+    "id": "sp-001",
+    "name": "Midtown South Precinct",
+    "lat": 40.7527,
+    "lng": -73.9878,
+    "category": "police",
+    "address": "357 W 35th St, New York, NY",
+    "phone": "+1-212-239-9811"
+  },
+  {
+    "id": "sp-002",
+    "name": "Bellevue Hospital Center",
+    "lat": 40.7390,
+    "lng": -73.9750,
+    "category": "hospital",
+    "address": "462 1st Avenue, New York, NY",
+    "phone": "+1-212-562-4141"
+  },
+  {
+    "id": "sp-003",
+    "name": "FDNY Engine 1/Ladder 24",
+    "lat": 40.7505,
+    "lng": -73.9876,
+    "category": "fire_station",
+    "address": "142 W 31st St, New York, NY",
+    "phone": "+1-212-570-4300"
+  },
+  {
+    "id": "sp-004",
+    "name": "Grand Central Terminal",
+    "lat": 40.7527,
+    "lng": -73.9772,
+    "category": "public_building",
+    "address": "89 E 42nd St, New York, NY",
+    "phone": "+1-212-340-2583"
+  },
+  {
+    "id": "sp-005",
+    "name": "NYC Emergency Shelter",
+    "lat": 40.7480,
+    "lng": -73.9920,
+    "category": "shelter",
+    "address": "303 W 30th St, New York, NY",
+    "phone": "+1-212-533-0150"
+  },
+  {
+    "id": "sp-006",
+    "name": "Times Square Precinct",
+    "lat": 40.7589,
+    "lng": -73.9851,
+    "category": "police",
+    "address": "226 W 47th St, New York, NY",
+    "phone": "+1-212-768-8400"
+  },
+  {
+    "id": "sp-007",
+    "name": "NYU Langone Hospital",
+    "lat": 40.7421,
+    "lng": -73.9739,
+    "category": "hospital",
+    "address": "550 1st Avenue, New York, NY",
+    "phone": "+1-212-263-7300"
+  },
+  {
+    "id": "sp-008",
+    "name": "New York Public Library",
+    "lat": 40.7532,
+    "lng": -73.9822,
+    "category": "public_building",
+    "address": "476 5th Ave, New York, NY",
+    "phone": "+1-917-275-6975"
+  }
+]

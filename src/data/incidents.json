@@ -1,0 +1,92 @@
+[
+  {
+    "id": "inc-001",
+    "lat": 19.0608,
+    "lng": 72.8292,
+    "type": "theft",
+    "severity": 3,
+    "timestamp": "2024-12-21T02:30:00Z",
+    "description": "Phone snatching reported near Bandra railway station"
+  },
+  {
+    "id": "inc-002",
+    "lat": 19.0579,
+    "lng": 72.8341,
+    "type": "harassment",
+    "severity": 2,
+    "timestamp": "2024-12-21T01:15:00Z",
+    "description": "Verbal harassment reported near Linking Road"
+  },
+  {
+    "id": "inc-003",
+    "lat": 19.0596,
+    "lng": 72.8295,
+    "type": "assault",
+    "severity": 5,
+    "timestamp": "2024-12-20T23:45:00Z",
+    "description": "Physical altercation reported near Bandstand promenade"
+  },
+  {
+    "id": "inc-004",
+    "lat": 19.0621,
+    "lng": 72.8273,
+    "type": "suspicious",
+    "severity": 2,
+    "timestamp": "2024-12-21T00:20:00Z",
+    "description": "Suspicious individual following pedestrians near Carter Road"
+  },
+  {
+    "id": "inc-005",
+    "lat": 19.0583,
+    "lng": 72.8318,
+    "type": "theft",
+    "severity": 4,
+    "timestamp": "2024-12-20T22:00:00Z",
+    "description": "Mugging reported near Hill Road shopping area"
+  },
+  {
+    "id": "inc-006",
+    "lat": 19.0614,
+    "lng": 72.8259,
+    "type": "vandalism",
+    "severity": 1,
+    "timestamp": "2024-12-20T21:30:00Z",
+    "description": "Parked vehicle damaged near Bandstand parking zone"
+  },
+  {
+    "id": "inc-007",
+    "lat": 19.0557,
+    "lng": 72.8336,
+    "type": "accident",
+    "severity": 3,
+    "timestamp": "2024-12-21T03:00:00Z",
+    "description": "Hit-and-run reported near SV Road junction"
+  },
+  {
+    "id": "inc-008",
+    "lat": 19.0632,
+    "lng": 72.8287,
+    "type": "harassment",
+    "severity": 3,
+    "timestamp": "2024-12-20T20:15:00Z",
+    "description": "Group harassment reported near seaside jogging track"
+  },
+  {
+    "id": "inc-009",
+    "lat": 19.0569,
+    "lng": 72.8309,
+    "type": "theft",
+    "severity": 2,
+    "timestamp": "2024-12-21T01:45:00Z",
+    "description": "Pickpocketing reported in crowded market area"
+  },
+  {
+    "id": "inc-010",
+    "lat": 19.0601,
+    "lng": 72.8349,
+    "type": "suspicious",
+    "severity": 3,
+    "timestamp": "2024-12-20T23:00:00Z",
+    "description": "Suspicious unattended bag reported near bus stop"
+  }
+]
