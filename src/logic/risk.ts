@@ -178,7 +178,7 @@ export function sortByDistance(
  */
 export function getTimeBasedSafety(): { isNightTime: boolean; warning: string | null } {
   const hour = new Date().getHours();
-  const isNightTime = hour >= 22 || hour < 6;
+  const isNightTime = hour >= 22 || hour < 4;
   
   return {
     isNightTime,
