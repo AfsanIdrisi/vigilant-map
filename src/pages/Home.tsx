@@ -8,6 +8,7 @@ import EmergencySection from '../sections/EmergencySection';
 import SafePlacesSection from '../sections/SafePlacesSection';
 import { getEnvConfig } from '../logic/env';
 import { getTimeBasedSafety } from '../logic/risk';
+import AddToHomeHelp from '@/components/AddToHomeHelp';
 
 type ActiveSection = 'map' | 'threats' | 'routes' | 'emergency' | 'places';
 function setCookie(name: string, value: string, days = 1) {
@@ -211,6 +212,7 @@ export default function Home() {
       </nav>
 
       {/* Bottom padding for mobile nav */}
+      <AddToHomeHelp/>
       <div className="md:hidden h-20" />
     </div>
   );
