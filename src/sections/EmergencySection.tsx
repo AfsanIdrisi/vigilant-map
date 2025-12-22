@@ -203,7 +203,7 @@ export default function EmergencySection() {
     if (stored) {
       setContacts(JSON.parse(stored));
     } else {
-      setContacts(contactsData as Contact[]);
+      setContacts([]);
       localStorage.setItem(STORAGE_KEY, JSON.stringify(contactsData));
     }
   }, []);
