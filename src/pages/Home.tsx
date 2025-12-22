@@ -24,7 +24,7 @@ function getCookie(name: string) {
 }
 
 export default function Home() {
-  const [activeSection, setActiveSection] = useState<ActiveSection>('map');
+  const [activeSection, setActiveSection] = useState<ActiveSection>('emergency');
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [timeWarning, setTimeWarning] = useState<string | null>(null);
   const [location, setLocation] = useState<{ lat: number; lng: number } | null>(null);
