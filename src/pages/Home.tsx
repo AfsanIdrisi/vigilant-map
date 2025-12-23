@@ -261,7 +261,7 @@ export default function Home() {
           {/* Side Panel */}
           <div className="space-y-6 w-full ">
             {(activeSection === 'map' || activeSection === 'threats') && (
-              <ThreatInsightsSection />
+              <ThreatInsightsSection location={location}/>
             )}
 
             {activeSection === 'routes' && (
