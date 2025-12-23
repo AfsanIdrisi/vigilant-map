@@ -228,7 +228,7 @@ export default function RiskMapSection({location}) {
       {/* ============================
           STATS
       ============================ */}
-      <div className="grid grid-cols-3 gap-3">
+      <div className="grid grid-cols-1 gap-3">
         <div className="glass-panel p-4 text-center">
           <AlertTriangle className="w-6 h-6 mx-auto mb-2 text-risk-critical" />
           <div className="text-2xl font-bold">
@@ -244,17 +244,17 @@ export default function RiskMapSection({location}) {
           <p className="text-xs text-muted-foreground">High Severity (Under {INCIDENT_RADIUS_KM} KM)</p>
         </div>
 
-        <div className="glass-panel p-4 text-center">
+        {/* <div className="glass-panel p-4 text-center">
           <MapPin className="w-6 h-6 mx-auto mb-2 text-risk-medium" />
           <div className="text-2xl font-bold">{riskZones.length}</div>
           <p className="text-xs text-muted-foreground">Risk Zones</p>
-        </div>
+        </div> */}
 
-        <div className="glass-panel p-4 text-center">
+        {/* <div className="glass-panel p-4 text-center">
           <Shield className="w-6 h-6 mx-auto mb-2 text-risk-safe" />
           <div className="text-2xl font-bold">{areaRating}/5</div>
           <p className="text-xs text-muted-foreground">Area Score</p>
-        </div>
+        </div> */}
       </div>
     </section>
   );

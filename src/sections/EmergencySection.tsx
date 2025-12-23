@@ -16,9 +16,10 @@ import type { Contact } from '../types';
 
 const STORAGE_KEY = 'trusted_contacts';
 
-export default function EmergencySection() {
+export default function EmergencySection({location}) {
   const [isSosActive, setIsSosActive] = useState(false);
-  const [userLocation, setUserLocation] = useState<{ lat: number; lng: number } | null>(null);
+  console.log(location)
+  const [userLocation, setUserLocation] = useState<{ lat: number; lng: number } | null>(location || null);
   const [alertSent, setAlertSent] = useState(false);
 
   const [contacts, setContacts] = useState<Contact[]>([]);
@@ -51,10 +52,10 @@ export default function EmergencySection() {
       if ('geolocation' in navigator) {
         navigator.geolocation.getCurrentPosition(
           (pos) => resolve({ lat: pos.coords.latitude, lng: pos.coords.longitude }),
-          () => resolve({ lat: 40.7549, lng: -73.9840 })
+          () => resolve(location)
         );
       } else {
-        resolve({ lat: 40.7549, lng: -73.9840 });
+        resolve(location);
       }
     });
   }, []);
@@ -64,17 +65,18 @@ export default function EmergencySection() {
   -------------------------------------------- */
   const handleSosPress = useCallback(async () => {
     setIsSosActive(true);
-
-    const location = await getCurrentLocation();
+    // const location = await getCurrentLocation();
     setUserLocation(location);
 
     const smsEnabled = hasSmsApi();
 
     contacts.forEach((contact) => {
+    console.log('[SOS] Activated');
+
       const message = `🚨 EMERGENCY ALERT: I need help!
 Location: https://maps.google.com/?q=${location.lat},${location.lng}`;
 
-      if (smsEnabled) {
+      if (true) {
         console.log(`[SMS API] Sending to ${contact.name}: ${message}`);
       } else {
         console.log(`[SIMULATED] Alert to ${contact.name} (${contact.phone})`);

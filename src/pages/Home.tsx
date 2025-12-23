@@ -269,7 +269,7 @@ export default function Home() {
             )}
 
             {activeSection === 'emergency' && (
-              <EmergencySection  />
+              <EmergencySection location={location}  />
             )}
 
             {activeSection === 'places' && (
