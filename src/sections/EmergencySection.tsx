@@ -26,9 +26,7 @@ export default function EmergencySection({location}) {
   const [editingContact, setEditingContact] = useState<Contact | null>(null);
   const [form, setForm] = useState({ name: '', phone: '', relationship: '' });
 
-  /* -------------------------------------------
-     Load contacts from localStorage or JSON
-  -------------------------------------------- */
+
   useEffect(() => {
     const stored = localStorage.getItem(STORAGE_KEY);
     if (stored) {
@@ -44,9 +42,7 @@ export default function EmergencySection({location}) {
     localStorage.setItem(STORAGE_KEY, JSON.stringify(updated));
   };
 
-  /* -------------------------------------------
-     Location
-  -------------------------------------------- */
+ 
   const getCurrentLocation = useCallback((): Promise<{ lat: number; lng: number }> => {
     return new Promise((resolve) => {
       if ('geolocation' in navigator) {
@@ -60,9 +56,7 @@ export default function EmergencySection({location}) {
     });
   }, []);
 
-  /* -------------------------------------------
-     SOS Logic (UNCHANGED except contacts source)
-  -------------------------------------------- */
+
   const handleSosPress = useCallback(async () => {
     setIsSosActive(true);
     // const location = await getCurrentLocation();
@@ -91,9 +85,7 @@ Location: https://maps.google.com/?q=${location.lat},${location.lng}`;
     }, 5000);
   }, [contacts, getCurrentLocation]);
 
-  /* -------------------------------------------
-     CONTACT CRUD
-  -------------------------------------------- */
+ 
   const handleAddOrUpdate = () => {
     if (!form.name || !form.phone) return;
 
@@ -123,18 +115,6 @@ Location: https://maps.google.com/?q=${location.lat},${location.lng}`;
     saveContacts(contacts.filter((c) => c.id !== id));
   };
 
-  /* -------------------------------------------
-     Emergency numbers
-  -------------------------------------------- */
- 
-  // const emergencyNumbers = useMemo(() => [
-  //   { name: 'National Emergency', number: '112', icon: '🚨' },   // Unified emergency number
-  //   { name: 'Police', number: '100', icon: '👮' },
-  //   { name: 'Fire Brigade', number: '101', icon: '🚒' },
-  //   { name: 'Ambulance', number: '108', icon: '🚑' },
-  //   { name: 'Women Helpline', number: '1091', icon: '👩' },
-  //   { name: 'Child Helpline', number: '1098', icon: '🧒' },
-  // ], []);
 
   const emergencyNumbers = useMemo(() => [
   {
@@ -178,7 +158,6 @@ Location: https://maps.google.com/?q=${location.lat},${location.lng}`;
         <h2 className="text-xl font-bold">Emergency Assistance</h2>
       </div>
 
-      {/* SOS Button */}
       <div className="glass-panel p-6 text-center">
         <button
           onClick={handleSosPress}
@@ -202,21 +181,7 @@ Location: https://maps.google.com/?q=${location.lat},${location.lng}`;
           </div>
         )}
       </div>
-      {/* <div className="grid grid-cols-2 gap-2">
-        {emergencyNumbers.map((service) => (
-          <a
-            key={service.name}
-            href={`tel:${service.number}`}
-            className="flex items-center gap-3 p-3 rounded-lg bg-secondary hover:bg-secondary/80 transition-colors"
-          >
-            <span className="text-xl">{service.icon}</span>
-            <div>
-              <span className="font-medium block">{service.name}</span>
-              <span className="text-xs text-muted-foreground">{service.number}</span>
-            </div>
-          </a>
-        ))}
-      </div> */}
+  
 
 <div className="grid grid-cols-2 gap-2">
   {emergencyNumbers.map((service) => (
@@ -239,15 +204,13 @@ Location: https://maps.google.com/?q=${location.lat},${location.lng}`;
   ))}
 </div>
 
-      {/* </div> */}
-      {/* Trusted Contacts */}
+    
       <div className="glass-panel p-4">
         <h3 className="font-semibold mb-4 flex items-center gap-2">
           <Users className="w-4 h-4 text-primary" />
           Trusted Contacts
         </h3>
 
-        {/* Add / Edit Contact Form */}
         <div className="mb-5 p-4 rounded-xl border border-border/40 bg-secondary/30">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
 
@@ -262,7 +225,6 @@ Location: https://maps.google.com/?q=${location.lat},${location.lng}`;
               />
             </div>
 
-            {/* Phone */}
             <div className="relative">
               <Phone className="w-4 h-4 absolute left-3 top-3 text-muted-foreground" />
               <input
@@ -275,7 +237,6 @@ Location: https://maps.google.com/?q=${location.lat},${location.lng}`;
               />
             </div>
 
-            {/* Relationship */}
             <div className="relative">
               <MessageSquare className="w-4 h-4 absolute left-3 top-3 text-muted-foreground" />
               <input
@@ -301,7 +262,6 @@ Location: https://maps.google.com/?q=${location.lat},${location.lng}`;
           </div>
         </div>
 
-        {/* Contact List */}
         <div className="space-y-3">
           {contacts.map((contact) => (
             <div

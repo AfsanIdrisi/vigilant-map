@@ -311,7 +311,6 @@ export default function SafePlacesSection({
 
       {!loading && (
         <>
-          {/* Filters */}
           <div className="glass-panel p-4">
             <div className="flex flex-wrap gap-2 mb-4">
               <button

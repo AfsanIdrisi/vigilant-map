@@ -294,7 +294,6 @@ export default function RoutePlannerSection() {
   const [selectedIndex, setSelectedIndex] = useState<number | null>(null);
   const [mode, setMode] = useState<'all' | 'safest' | 'fastest'>('all');
 
-  /* ---- FETCH ROUTES ---- */
   useEffect(() => {
     if (!start || !end) return;
 
@@ -309,7 +308,6 @@ export default function RoutePlannerSection() {
     fetchRoutes();
   }, [start, end]);
 
-  /* ---- ANALYSIS ---- */
   const analyzedRoutes = useMemo(() => {
     return routes.map((r, idx) => ({
       id: idx,
@@ -348,42 +346,6 @@ export default function RoutePlannerSection() {
         <Navigation className="w-5 h-5" /> Route Planner
       </h2>
 
-      {/* MAP */}
-      {/* <MapContainer
-        center={[19.076, 72.8777]}
-        zoom={13}
-        className="h-[400px]  rounded-lg"
-      >
-        <TileLayer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" />
-        <MapClickHandler
-          onClick={(lat, lng) => {
-            if (!start) setStart({ lat, lng });
-            else if (!end) setEnd({ lat, lng });
-            else {
-              setStart({ lat, lng });
-              setEnd(null);
-              setRoutes([]);
-            }
-          }}
-        />
-
-        {start && <Marker position={[start.lat, start.lng]} />}
-        {end && <Marker position={[end.lat, end.lng]} />}
-
-        {routes.map((r, i) => (
-          <Polyline
-            key={i}
-            positions={decodePolyline(r.geometry).map((p) => [
-              p.lat,
-              p.lng,
-            ])}
-            color={i === selectedIndex ? '#2563eb' : '#999'}
-            weight={i === selectedIndex ? 6 : 3}
-            opacity={i === selectedIndex ? 1 : 0.4}
-          />
-        ))}
-      </MapContainer>
-       */}
       <div className="w-full">
         <MapContainer
           center={[19.076, 72.8777]}
@@ -422,7 +384,6 @@ export default function RoutePlannerSection() {
       </div>
 
 
-      {/* MODE */}
       <div className="flex gap-2">
         {['all', 'safest', 'fastest'].map((m) => (
           <button
@@ -436,41 +397,8 @@ export default function RoutePlannerSection() {
         ))}
       </div>
 
-      {/* ROUTE CARDS */}
       <div className="space-y-3">
-        {/* {visibleRoutes.map((r) => (
-          <button
-            key={r.id}
-            onClick={() => setSelectedIndex(r.id)}
-            className="glass-panel p-4 w-full text-left"
-          >
-            <div className="flex justify-between mb-2">
-              <span className="font-semibold">
-                {r === safest && '🟢 Safest'}
-                {r === fastest && r !== safest && '⚡ Fastest'}
-                {r !== safest && r !== fastest && 'Route Option'}
-              </span>
-              <span className={`risk-badge-${r.riskLevel}`}>
-                {r.riskLevel}
-              </span>
-            </div>
-
-            <div className="grid grid-cols-3 text-center">
-              <div>
-                <Clock className="mx-auto w-4 h-4" />
-                {r.estimatedTime} min
-              </div>
-              <div>
-                <RouteIcon className="mx-auto w-4 h-4" />
-                {r.distance} km
-              </div>
-              <div>
-                <AlertTriangle className="mx-auto w-4 h-4" />
-                {r.incidentsNearby} risks
-              </div>
-            </div>
-          </button>
-        ))} */}
+  
         {visibleRoutes.map((r) => (
           <button
             key={r.id}

@@ -16,9 +16,7 @@ import {
 } from "../logic/risk";
 import type { Incident } from "../types";
 
-/* ============================
-   FIX LEAFLET ICONS
-============================ */
+
 delete (L.Icon.Default.prototype as any)._getIconUrl;
 L.Icon.Default.mergeOptions({
   iconRetinaUrl:
@@ -29,7 +27,6 @@ L.Icon.Default.mergeOptions({
     "https://unpkg.com/leaflet@1.9.4/dist/images/marker-shadow.png",
 });
 
-// Distance in KM between two lat/lng points
 export function calculateDistance(
   lat1: number,
   lng1: number,
@@ -50,18 +47,18 @@ export function calculateDistance(
 
   const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
 
-  return R * c; // distance in KM
+  return R * c; 
 }
 
 function degToRad(deg: number): number {
   return deg * (Math.PI / 180);
 }
 const SEVERITY_COLORS: Record<number, string> = {
-  1: '#22c55e', // green - low
-  2: '#84cc16', // lime
-  3: '#eab308', // yellow
-  4: '#f97316', // orange
-  5: '#ef4444', // red - critical
+  1: '#22c55e', 
+  2: '#84cc16', 
+  3: '#eab308', 
+  4: '#f97316', 
+  5: '#ef4444', 
 };
 
 function getIncidentIcon(severity: number) {
@@ -85,13 +82,8 @@ function getIncidentIcon(severity: number) {
 }
 
 
-/* ============================
-   BANDRA CENTER
-============================ */
-// const location? = {
-//   lat: 19.0596,
-//   lng: 72.8295,
-// };
+
+
 
 const INCIDENT_RADIUS_KM = 1.5; // 5 meters
 const incidents: Incident[] = incidentsData as Incident[];
@@ -144,7 +136,6 @@ export default function RiskMapSection({location}) {
           </CircleMarker>
 
 
-          {/* RISK ZONES */}
           {riskZones.map((zone, index) => (
             <Circle
               key={index}
@@ -164,34 +155,6 @@ export default function RiskMapSection({location}) {
             />
           ))}
 
-     
-          {/* {incidents
-            .filter((incident) =>
-              calculateDistance(
-                location?.lat,
-                location?.lng,
-                incident.lat,
-                incident.lng
-              ) <= INCIDENT_RADIUS_KM
-            )
-            .map((incident) => (
-              <Marker
-                key={incident.id}
-                position={[incident.lat, incident.lng]}
-              >
-                <Popup>
-                  <div className="space-y-1">
-                    <div className="font-semibold capitalize">
-                      {incident.type}
-                    </div>
-                    <div>Severity: {incident.severity}</div>
-                    <div className="text-xs text-muted-foreground">
-                      {incident.description}
-                    </div>
-                  </div>
-                </Popup>
-              </Marker>
-            ))} */}
             {incidents
   .filter((incident) =>
     calculateDistance(
@@ -225,14 +188,10 @@ export default function RiskMapSection({location}) {
         </MapContainer>
       </div>
 
-      {/* ============================
-          STATS
-      ============================ */}
       <div className="grid grid-cols-1 gap-3">
         <div className="glass-panel p-4 text-center">
           <AlertTriangle className="w-6 h-6 mx-auto mb-2 text-risk-critical" />
           <div className="text-2xl font-bold">
-            {/* {incidents.filter((i) => i.severity >= 4).length} */}
                    {incidents.filter((i) => i.severity >= 3 && calculateDistance(
                 location?.lat,
                 location?.lng,

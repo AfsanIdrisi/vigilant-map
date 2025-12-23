@@ -106,12 +106,10 @@ export default function Home() {
     getEnvConfig();
 
 
-    // Check time-based safety
     const loc = LOCATIONS[0]
 
     setLocation({ lat: loc.coords.latitude, lng: loc.coords.longitude });
     const timeSafety = getTimeBasedSafety();
-    // console.log(timeSafety)
 
     setTimeWarning(timeSafety.warning);
   }, []);
@@ -134,7 +132,6 @@ export default function Home() {
 
   return (
     <div className="min-h-screen bg-background">
-      {/* Header */}
       <header className="sticky top-0 z-50 border-b border-border bg-background/80 backdrop-blur-xl">
         <div className="container mx-auto px-4">
           <div className="flex items-center justify-between h-16">
@@ -239,7 +236,6 @@ export default function Home() {
       </header>
 
 
-      {/* Time Warning Banner */}
       {timeWarning && (
         <div className="bg-risk-medium/20 border-b border-risk-medium/30 px-4 py-2 animate-fade-in">
           <div className="container mx-auto flex items-center gap-2 text-sm">
@@ -250,15 +246,12 @@ export default function Home() {
       )}
       <AddToHomeHelp />
 
-      {/* Main Content */}
       <main className="container mx-auto px-4 py-6">
         <div className={`grid ${activeSection != "routes" ? "lg:grid-cols-3" : "lg:grid-cols-1"} gap-6`}>
-          {/* Map Section - Always visible on desktop */}
           {activeSection != "routes" && <div className={`lg:col-span-2 ${activeSection !== 'map' && activeSection !== 'routes' ? 'hidden lg:block' : ''}`}>
             <RiskMapSection location={location} />
           </div>}
 
-          {/* Side Panel */}
           <div className="space-y-6 w-full ">
             {(activeSection === 'map' || activeSection === 'threats') && (
               <ThreatInsightsSection location={location}/>
@@ -276,14 +269,12 @@ export default function Home() {
               <SafePlacesSection location={location} />
             )}
             {activeSection === 'how-to' && (
-              // <SafePlacesSection location={location} />
               <FeatureGuideSection/>
             )}
           </div>
         </div>
       </main>
 
-      {/* Mobile Bottom Nav */}
       <nav className="md:hidden fixed bottom-0 left-0 right-0 bg-background/80 backdrop-blur-xl border-t border-border z-50">
         <div className="grid grid-cols-5">
           {navItems.map((item) => {
@@ -296,7 +287,6 @@ export default function Home() {
                 : 'text-muted-foreground'
                 }`}
             >
-              {/* <span className="text-xl">{item.icon}</span> */}
               <Icon className="w-6 h-6" />
               <span className={activeSection === item.id ? 'font-semibold' : ''}>
                 {item.label}
@@ -309,7 +299,6 @@ export default function Home() {
         </div>
       </nav>
 
-      {/* Bottom padding for mobile nav */}
       <div className="md:hidden h-20" />
     </div>
   );

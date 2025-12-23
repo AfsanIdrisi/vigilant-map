@@ -13,7 +13,6 @@ export default function AddToHomeHelp() {
 
   return (
     <>
-      {/* Trigger Button */}
       <div className="flex justify-center">
       <button
         onClick={() => setOpen(true)}
@@ -25,16 +24,13 @@ export default function AddToHomeHelp() {
 
       </div>
 
-      {/* Popup */}
       {open && (
         <div className="fixed inset-0 z-[1000] flex items-end justify-center p-4">
-          {/* Backdrop */}
           <div
             className="absolute inset-0 bg-black/40 backdrop-blur-sm"
             onClick={() => setOpen(false)}
           />
 
-          {/* Modal */}
           <div className="relative w-full max-w-md glass-panel p-5 rounded-2xl border border-border/40 animate-slide-up">
             <div className="flex items-start gap-3">
               <div className="p-2 rounded-lg bg-primary/20 text-primary">
@@ -58,7 +54,6 @@ export default function AddToHomeHelp() {
               </button>
             </div>
 
-            {/* Instructions */}
             <div className="mt-4 space-y-3 text-sm">
               {platform === "android" && (
                 <ul className="space-y-2">
@@ -87,7 +82,6 @@ export default function AddToHomeHelp() {
               )}
             </div>
 
-            {/* Footer */}
             <div className="flex justify-end mt-5">
               <button
                 onClick={() => setOpen(false)}

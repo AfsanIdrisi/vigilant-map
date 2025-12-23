@@ -25,16 +25,10 @@ export default function ThreatInsightsSection({
 }) {
   if (!location) return null;
 
-  /* -------------------------------
-     Nearby incidents (ALWAYS fresh)
-  -------------------------------- */
   const nearbyIncidents = useMemo(() => {
     return sortByDistance(location.lat, location.lng, incidents).slice(0, 5);
   }, [location.lat, location.lng]);
 
-  /* -------------------------------
-     AI safety advice
-  -------------------------------- */
   const safetyAdvice = useMemo(() => {
     return generateSafetyAdvice(incidents, location);
   }, [location.lat, location.lng]);
@@ -66,7 +60,6 @@ export default function ThreatInsightsSection({
         <h2 className="text-xl font-bold">Threat Insights</h2>
       </div>
 
-      {/* AI Safety Advice */}
       <div
         className={`glass-panel p-4 border-l-4 ${urgencyColors[safetyAdvice.urgency]} animate-fade-in`}
       >
@@ -97,7 +90,6 @@ export default function ThreatInsightsSection({
         </div>
       </div>
 
-      {/* Nearby Incidents */}
       <div className="glass-panel p-4 w-full animate-slide-in-right">
         <h3 className="font-semibold mb-3 flex items-center gap-2">
           <MapPin className="w-4 h-4" />
@@ -163,7 +155,6 @@ export default function ThreatInsightsSection({
         </div>
       </div>
 
-      {/* Time-Based Tips */}
       <div className="glass-panel p-4">
         <h3 className="font-semibold mb-3 flex items-center gap-2">
           <Clock className="w-4 h-4" />
