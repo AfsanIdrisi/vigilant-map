@@ -117,5 +117,23 @@
   { "id": "inc-097", "lat": 19.0568, "lng": 72.8612, "type": "assault", "severity": 3, "timestamp": "2025-01-27T23:05:00Z", "description": "Assault reported near Lower Parel station road" },
   { "id": "inc-098", "lat": 19.1419, "lng": 72.8673, "type": "robbery", "severity": 3, "timestamp": "2025-01-27T21:20:00Z", "description": "Mobile snatching incident near Andheri West subway" },
   { "id": "inc-099", "lat": 19.1998, "lng": 72.8614, "type": "assault", "severity": 3, "timestamp": "2025-01-27T22:50:00Z", "description": "Assault reported near Malad East residential lane" },
-  { "id": "inc-100", "lat": 19.1025, "lng": 72.8589, "type": "robbery", "severity": 3, "timestamp": "2025-01-27T20:35:00Z", "description": "Snatching incident near Powai JVLR junction" }
+  { "id": "inc-100", "lat": 19.1025, "lng": 72.8589, "type": "robbery", "severity": 3, "timestamp": "2025-01-27T20:35:00Z", "description": "Snatching incident near Powai JVLR junction" },
+  {
+  "id": "inc-027",
+  "lat": 18.9350,
+  "lng": 72.8262,
+  "type": "theft",
+  "severity": 2,
+  "timestamp": "2025-02-18T18:40:00Z",
+  "description": "Pickpocketing incident reported near Churchgate station platform"
+},
+{
+  "id": "inc-028",
+  "lat": 18.9338,
+  "lng": 72.8255,
+  "type": "harassment",
+  "severity": 2,
+  "timestamp": "2025-02-18T21:20:00Z",
+  "description": "Harassment complaint registered near Marine Drive promenade"
+}
   ]

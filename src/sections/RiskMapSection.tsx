@@ -123,7 +123,7 @@ export default function RiskMapSection({location}) {
 
         <MapContainer
           center={[location?.lat, location.lng]}
-          zoom={14}
+          zoom={10}
           className="h-full "
           scrollWheelZoom
         >
